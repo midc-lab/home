@@ -1,41 +1,51 @@
 :root {
-  /* Light Mode Colors */
-  --bg-primary: #f4f7f6;
-  --bg-secondary: #ffffff;
-  --text-primary: #1a1a2e;
-  --text-secondary: #4a4a68;
-  --accent-primary: #007bff;
-  --accent-color: var(--accent-primary); /* Backward compatibility */
-  --accent-hover: #2980b9;
+  /* ---- Light theme — matches the rest of the MIDC Lab site ---- */
+  --bg-primary: #faf8f3;       /* paper */
+  --bg-secondary: #ffffff;     /* surface */
+  --text-primary: #11182b;     /* ink */
+  --text-secondary: #525b72;   /* ink-soft */
+  --text-muted: #8a92a6;       /* ink-faint */
+  --border-color: #e6e2d6;     /* line */
 
-  /* Dark Mode Colors */
+  --accent-primary: #1b2f6b;   /* signal navy */
+  --accent-color: var(--accent-primary); /* backward compatibility */
+  --accent-hover: #142450;
+  --accent-amber: #f2a900;
+  --accent-amber-dark: #c98300;
+  --accent-teal: #0e7c7b;
+
+  /* Dark Mode Colors (left as-is for users who toggle dark mode) */
   --dark-bg-primary: #121212;
   --dark-bg-secondary: #1e1e1e;
   --dark-text-primary: #e0e0e0;
   --dark-text-secondary: #b0b0b0;
   --dark-accent-color: #4ecdc4;
   --dark-accent-hover: #45b7aa;
-}
 
-body {
-  margin: 0;
-  padding: 0;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  min-height: 100vh;
-  color: #2c3e50;
-  line-height: 1.6;
-  font-family: "Inter", sans-serif;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-}
+  --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-display: 'Space Grotesk', 'Inter', sans-serif;
+  --font-family-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
-/* Skip link styles now handled by header component */
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-full: 9999px;
+
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+}
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  transition: all 0.3s ease;
+}
+
+body {
+  font-family: var(--font-family-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
 }
 
 body.dark-mode {
@@ -43,9 +53,11 @@ body.dark-mode {
   color: var(--dark-text-primary);
 }
 
-/* Header styles now handled by header component */
+/* Header styles handled by header component */
 
-/* Toggle Switch */
+/* ----------------------------------------------------------------------
+   Toggle Switch (kept as-is for compatibility with header/theme script)
+   ---------------------------------------------------------------------- */
 .theme-toggle {
   position: relative;
   width: 100px;
@@ -74,7 +86,6 @@ body.dark-mode {
   width: 100%;
   height: 100%;
   border-radius: 25px;
-  -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 
@@ -90,49 +101,69 @@ body.dark-mode {
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  -webkit-box-shadow: inset 12px -4px 0px 0px var(--bg-primary);
   box-shadow: inset 12px -4px 0px 0px var(--bg-primary);
   background-color: var(--dark-bg-primary);
-  -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 
 .theme-switch:checked ~ .slider::before {
-  -webkit-transform: translateX(50px);
-  -ms-transform: translateX(50px);
   transform: translateX(50px);
   background-color: var(--dark-bg-primary);
-  -webkit-box-shadow: none;
   box-shadow: none;
 }
 
-/* Container and Section Styles */
+/* ----------------------------------------------------------------------
+   Page container
+   ---------------------------------------------------------------------- */
 #about-container {
-  /* max-width: 1200px; */
-  /* margin: 40px auto; */
-  padding: 40px;
-  background-color: var(--bg-secondary);
-  /* border-radius: 20px; */
-  /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); */
-  /* animation: fadeIn 0.8s ease-in-out; */
+  padding: var(--spacing-20, 5rem) 6% var(--spacing-24, 6rem);
+  background-color: var(--bg-primary);
+  background-image: radial-gradient(circle at 18px 18px, rgba(27,47,107,0.05) 1.5px, transparent 1.5px);
+  background-size: 36px 36px;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Eyebrow label + pulse dot (used above the page title) */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-family-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-teal);
+  font-weight: 500;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-amber);
+  position: relative;
+  flex-shrink: 0;
+}
+.pulse-dot::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent-amber);
+  animation: pulseRing 1.8s var(--ease-out) infinite;
+}
+@keyframes pulseRing {
+  0% { transform: scale(0.6); opacity: 0.9; }
+  100% { transform: scale(1.8); opacity: 0; }
 }
 
 .section-title {
-  font-size: 1.5rem;
+  font-family: var(--font-family-display);
+  font-size: 2.25rem;
   text-align: center;
-  margin-bottom: 40px;
-  color: #2c3e50;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
   font-weight: 700;
   position: relative;
   padding-bottom: 15px;
@@ -146,39 +177,69 @@ body.dark-mode {
   transform: translateX(-50%);
   width: 80px;
   height: 4px;
-  background: linear-gradient(90deg, #3498db, #2980b9);
-  border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent-amber), var(--accent-teal));
+  border-radius: var(--radius-full);
 }
 
+#about-container > .section-title { margin-bottom: 4rem; }
+
+/* Category labels: Faculty / Members / PhD Candidates / Interns */
 .section-subtitle {
-  font-size: 2rem;
-  color: #3498db;
-  margin: 35px 0 20px;
-  border-bottom: 2px solid #3498db;
-  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-family-mono);
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-primary);
+  margin: 3.5rem auto 2rem;
+  padding-bottom: 0;
+  border-bottom: none;
   font-weight: 600;
+  max-width: 1300px;
 }
 
-/* Team Container Styles */
+.section-subtitle::before {
+  content: '';
+  width: 28px;
+  height: 3px;
+  background: var(--accent-amber);
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+.section-subtitle::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-color);
+}
+
+/* ----------------------------------------------------------------------
+   Team Container + Cards
+   ---------------------------------------------------------------------- */
 .team-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
-  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.75rem;
+  max-width: 1300px;
+  margin: 0 auto 1.5rem;
 }
 
 .team-member {
-  width: 280px;
   text-align: center;
-  margin-bottom: 30px;
-  padding: 25px 20px;
-  border-radius: 15px;
-  background-color: #ffffff;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-  transition: all 0.4s ease;
+  padding: 2rem 1.5rem 1.75rem;
+  border-radius: var(--radius-2xl);
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .team-member::before {
@@ -187,16 +248,17 @@ body.dark-mode {
   top: 0;
   left: 0;
   width: 100%;
-  height: 5px;
-  background: linear-gradient(90deg, #3498db, #2980b9);
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-amber), var(--accent-teal));
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.4s ease;
+  transition: transform 0.4s var(--ease-out);
 }
 
 .team-member:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(27,47,107,0.12);
+  border-color: rgba(27,47,107,0.2);
 }
 
 .team-member:hover::before {
@@ -204,111 +266,226 @@ body.dark-mode {
 }
 
 .member-img {
-  width: 160px;
-  height: 160px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  object-fit: cover;
-  margin: 0 auto 20px;
-  background-color: #f0f3f7;
-  border: 5px solid #e0e6ed;
-  transition: all 0.3s ease;
   overflow: hidden;
+  margin: 0 auto 1.25rem;
+  background-color: var(--bg-primary);
+  border: 3px solid #ffffff;
+  outline: 2px solid var(--border-color);
+  outline-offset: 3px;
+  transition: outline-color 0.3s var(--ease-out), transform 0.3s var(--ease-out);
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 4rem;
-  color: #a0aec0;
+  flex-shrink: 0;
 }
 
 .member-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 .team-member:hover .member-img {
   transform: scale(1.05);
-  border-color: #3498db;
-}
-
-.member-img::after {
-  font-size: 4rem;
-  color: #a0aec0;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
+  outline-color: var(--accent-amber);
 }
 
 .member-name {
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin-bottom: 10px;
-  color: #2c3e50;
+  font-family: var(--font-family-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
 }
 
 .member-role {
-  font-size: 1.05rem;
-  color: #3498db;
-  margin-bottom: 15px;
+  display: inline-block;
+  font-family: var(--font-family-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   font-weight: 500;
-  padding-bottom: 15px;
-  border-bottom: 1px dashed #e0e6ed;
+  color: var(--accent-teal);
+  background: rgba(14,124,123,0.1);
+  padding: 4px 14px;
+  border-radius: var(--radius-full);
+  margin-bottom: 1.25rem;
+  border-bottom: none;
+}
+
+/* Role badges tinted by section, in document order — no extra HTML needed */
+#about-container > .team-container:nth-of-type(2) .member-role {
+  color: var(--accent-primary);
+  background: rgba(27,47,107,0.08);
+}
+#about-container > .team-container:nth-of-type(3) .member-role {
+  color: var(--accent-amber-dark);
+  background: rgba(242,169,0,0.12);
+}
+#about-container > .team-container:nth-of-type(4) .member-role {
+  color: var(--text-secondary);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
 }
 
 .member-contribution {
   text-align: left;
-  font-size: 0.95rem;
-  color: #5d6d7e;
 }
 
 .member-contribution ul {
-  padding-left: 20px;
-  margin-top: 10px;
-  list-style-type: none;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  padding-left: 0;
+  margin-top: 0;
 }
 
 .member-contribution li {
-  margin-bottom: 8px;
-  position: relative;
-  padding-left: 20px;
+  font-size: 0.6875rem;
+  color: var(--text-secondary);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  margin-bottom: 0;
+  transition: background 0.25s var(--ease-out), color 0.25s var(--ease-out);
+}
+.member-contribution li::before { content: none; }
+
+.team-member:hover .member-contribution li {
+  background: #faf0d6;
+  color: var(--text-primary);
 }
 
-.member-contribution li::before {
-  content: "✓";
-  color: #3498db;
-  font-weight: bold;
-  position: absolute;
-  left: 0;
+/* ============================================ */
+/* FACULTY DIRECTOR SPOTLIGHT (#AH) — refined   */
+/* ============================================ */
+
+#AH.team-container {
+  display: block;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto 1.5rem;
 }
 
-/* Footer */
-.dark-mode .footer {
-  background-color: var(--dark-bg-secondary);
+#AH .team-member {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  grid-template-areas:
+    "img name"
+    "img role"
+    "img tags"
+    "bio bio";
+  column-gap: 2.5rem;
+  row-gap: 0.5rem;
+  width: 100%;
+  text-align: left;
+  align-items: start;
+  padding: 2.5rem;
+  border-color: rgba(27,47,107,0.15);
+  background: linear-gradient(180deg, #ffffff 0%, #fbfaf6 100%);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.04);
 }
 
-.footer-button {
-  text-decoration: none;
-  color: white;
-  padding: 0.5rem 1rem;
-  border: 1px solid white;
-  border-radius: 5px;
-  transition: all 0.3s ease;
+#AH .team-member:hover {
+  transform: translateY(-4px);
 }
 
-.footer-button:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+#AH .member-img {
+  grid-area: img;
+  width: 200px;
+  height: 200px;
+  border-radius: var(--radius-2xl);
+  margin: 0;
+  outline-offset: 4px;
 }
 
+#AH .member-img img {
+  filter: none;
+}
+
+#AH .member-name {
+  grid-area: name;
+  font-size: 1.5rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.4rem;
+}
+
+#AH .member-role {
+  grid-area: role;
+  background: var(--accent-primary);
+  color: #ffffff;
+  align-self: start;
+  margin-bottom: 0.75rem;
+}
+
+#AH .member-contribution {
+  grid-area: tags;
+  margin-top: 0.25rem;
+}
+#AH .member-contribution ul { justify-content: flex-start; }
+
+#AH .member-bio {
+  grid-area: bio;
+  margin-top: 1.75rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--border-color);
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+}
+
+#AH .member-bio h2 {
+  font-family: var(--font-family-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-teal);
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+}
+
+#AH .member-bio p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+#AH .member-bio p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 850px) {
+  #AH .team-member {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "img"
+      "name"
+      "role"
+      "tags"
+      "bio";
+    text-align: center;
+    padding: 1.75rem;
+  }
+  #AH .member-img { margin: 0 auto 1rem; }
+  #AH .member-role { align-self: center; }
+  #AH .member-contribution ul { justify-content: center; }
+  #AH .member-bio { text-align: left; }
+}
+
+/* ----------------------------------------------------------------------
+   Footer
+   ---------------------------------------------------------------------- */
 .footer {
   background-color: var(--text-primary);
   color: white;
@@ -344,7 +521,6 @@ body.dark-mode {
 }
 
 .footer-img {
-  /* width: 100px; */
   height: 100px;
   border-radius: 10px;
   margin-bottom: 1rem;
@@ -360,7 +536,7 @@ body.dark-mode {
   flex: 2;
   display: flex;
   justify-content: space-between;
-  gap: 2 rem;
+  gap: 2rem;
 }
 
 .footer-col h4 {
@@ -376,7 +552,7 @@ body.dark-mode {
   bottom: -8px;
   height: 2px;
   width: 40px;
-  background-color: var(--accent-color);
+  background-color: var(--accent-amber);
 }
 
 .dark-mode .footer-col h4::after {
@@ -414,7 +590,128 @@ body.dark-mode {
   color: var(--dark-text-secondary);
 }
 
+/* ----------------------------------------------------------------------
+   Back Button
+   ---------------------------------------------------------------------- */
+.btn-container {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.back-btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background: var(--accent-primary);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(27,47,107,0.3);
+}
+
+.back-btn:hover {
+  background: var(--accent-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(27,47,107,0.4);
+}
+
+.back-btn:active {
+  transform: translateY(1px);
+}
+
+/* ----------------------------------------------------------------------
+   Dark Mode overrides (unchanged behaviour, repointed to new tokens)
+   ---------------------------------------------------------------------- */
+.dark-mode #about-container {
+  background-color: var(--dark-bg-secondary);
+  background-image: none;
+  color: var(--dark-text-primary);
+}
+
+.dark-mode .section-title { color: var(--dark-text-primary); }
+
+.dark-mode .section-title::after {
+  background: linear-gradient(90deg, var(--dark-accent-color), var(--dark-accent-hover));
+}
+
+.dark-mode .section-subtitle {
+  color: var(--dark-accent-color);
+}
+.dark-mode .section-subtitle::after { background: rgba(255,255,255,0.15); }
+.dark-mode .section-subtitle::before { background: var(--dark-accent-color); }
+
+.dark-mode .team-member {
+  background-color: var(--dark-bg-primary);
+  border-color: rgba(255,255,255,0.08);
+  box-shadow: 0 5px 20px rgba(255, 255, 255, 0.06);
+}
+
+.dark-mode .team-member::before {
+  background: linear-gradient(90deg, var(--dark-accent-color), var(--dark-accent-hover));
+}
+
+.dark-mode .member-img {
+  background-color: var(--dark-bg-primary);
+  outline-color: var(--dark-text-secondary);
+  border-color: var(--dark-bg-secondary);
+}
+
+.dark-mode .member-name { color: var(--dark-text-primary); }
+
+.dark-mode .member-role {
+  color: var(--dark-accent-color);
+  background: rgba(78, 205, 196, 0.12);
+}
+
+.dark-mode .member-contribution { color: var(--dark-text-secondary); }
+
+.dark-mode .member-contribution li {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.1);
+  color: var(--dark-text-secondary);
+}
+
+.dark-mode .back-btn {
+  background: linear-gradient(135deg, var(--dark-accent-color), var(--dark-accent-hover));
+}
+
+/* ----------------------------------------------------------------------
+   Responsive Design (deduplicated)
+   ---------------------------------------------------------------------- */
+@media (max-width: 992px) {
+  #about-container {
+    padding: 2.5rem 5%;
+  }
+  .section-title {
+    font-size: 2rem;
+  }
+}
+
 @media screen and (max-width: 768px) {
+  #header {
+    padding: 15px 20px;
+    flex-direction: column;
+  }
+
+  #nav-buttons {
+    margin-top: 15px;
+  }
+
+  .section-title {
+    font-size: 1.85rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.8rem;
+  }
+
+  .team-container {
+    justify-content: center;
+  }
+
   .footer-content {
     flex-direction: column;
   }
@@ -439,224 +736,92 @@ body.dark-mode {
     transform: translateX(-50%);
   }
 }
-
-/* Toggle Switch */
-.theme-toggle {
-  position: relative;
-  width: 100px;
-  height: 50px;
-  --link: rgb(27, 129, 112);
-  --link-hover: rgb(24, 94, 82);
-}
-
-.theme-switch-label {
+/* ----------------------------------------------------------------------
+   LinkedIn button — pinned to the card itself, not a floating sibling
+   ---------------------------------------------------------------------- */
+.member-linkedin {
   position: absolute;
-  width: 100%;
-  height: 50px;
-  background-color: var(--dark-bg-primary);
-  border-radius: 25px;
-  cursor: pointer;
-  border: 3px solid var(--dark-bg-primary);
-}
-
-.theme-switch {
-  position: absolute;
-  display: none;
-}
-
-.slider {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 25px;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-}
-
-.theme-switch:checked ~ .slider {
-  background-color: var(--bg-primary);
-}
-
-.slider::before {
-  content: "";
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 25px;
-  height: 25px;
+  top: 1rem;
+  right: 1rem;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  -webkit-box-shadow: inset 12px -4px 0px 0px var(--bg-primary);
-  box-shadow: inset 12px -4px 0px 0px var(--bg-primary);
-  background-color: var(--dark-bg-primary);
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(27,47,107,0.08);
+  color: var(--accent-primary);
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: background 0.25s var(--ease-out), color 0.25s var(--ease-out), transform 0.25s var(--ease-out);
+  z-index: 2;
 }
 
-.theme-switch:checked ~ .slider::before {
-  -webkit-transform: translateX(50px);
-  -ms-transform: translateX(50px);
-  transform: translateX(50px);
-  background-color: var(--dark-bg-primary);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-
-/* Responsive Design */
-@media screen and (max-width: 768px) {
-  .header,
-  .hero-section,
-  .about-content,
-  .project-slider {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .footer-links {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
-/* Back Button */
-.btn-container {
-  text-align: center;
-  margin-top: 40px;
-}
-
-.back-btn {
-  display: inline-block;
-  padding: 12px 30px;
-  background: linear-gradient(135deg, #3498db, #2980b9);
-  color: white;
-  border: none;
-  border-radius: 30px;
-  font-size: 1.1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
-}
-
-.back-btn:hover {
+.member-linkedin:hover {
+  background: #0a66c2;
+  color: #ffffff;
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(52, 152, 219, 0.5);
 }
 
-.back-btn:active {
-  transform: translateY(1px);
-}
-
-/* Responsive Design */
-@media (max-width: 992px) {
-  #about-container {
-    padding: 30px;
-    margin: 30px 20px;
-  }
-
-  .section-title {
-    font-size: 2.5rem;
-  }
-
-  .section-subtitle {
-    font-size: 1.8rem;
-  }
-}
-
-@media (max-width: 768px) {
-  #header {
-    padding: 15px 20px;
-    flex-direction: column;
-  }
-
-  #nav-buttons {
-    margin-top: 15px;
-  }
-
-  .section-title {
-    font-size: 2.2rem;
-  }
-
-  .section-subtitle {
-    font-size: 1.6rem;
-  }
-
-  .team-container {
-    justify-content: center;
-  }
-}
-
-/* Existing root variables remain the same */
-
-/* Dark Mode Specific Styles for Team Members Page */
-.dark-mode #about-container {
-  background-color: var(--dark-bg-secondary);
-  color: var(--dark-text-primary);
-}
-
-.dark-mode .section-title {
-  color: var(--dark-text-primary);
-}
-
-.dark-mode .section-title::after {
-  background: linear-gradient(
-    90deg,
-    var(--dark-accent-color),
-    var(--dark-accent-hover)
-  );
-}
-
-.dark-mode .section-subtitle {
-  color: var(--dark-accent-color);
-  border-bottom-color: var(--dark-accent-color);
-}
-
-.dark-mode .team-container {
-  background-color: var(--dark-bg-secondary);
-}
-
-.dark-mode .team-member {
-  background-color: var(--dark-bg-primary);
-  box-shadow: 0 5px 20px rgba(255, 255, 255, 0.08);
-}
-
-.dark-mode .team-member::before {
-  background: linear-gradient(
-    90deg,
-    var(--dark-accent-color),
-    var(--dark-accent-hover)
-  );
-}
-
-.dark-mode .member-img {
-  background-color: var(--dark-bg-primary);
-  border-color: var(--dark-text-secondary);
-}
-
-.dark-mode .member-img::after {
-  color: var(--dark-text-secondary);
-}
-
-.dark-mode .member-name {
-  color: var(--dark-text-primary);
-}
-
-.dark-mode .member-role {
-  color: var(--dark-accent-color);
-  border-bottom-color: var(--dark-text-secondary);
-}
-
-.dark-mode .member-contribution {
-  color: var(--dark-text-secondary);
-}
-
-.dark-mode .member-contribution li::before {
+.dark-mode .member-linkedin {
+  background: rgba(255,255,255,0.08);
   color: var(--dark-accent-color);
 }
+.dark-mode .member-linkedin:hover {
+  background: #0a66c2;
+  color: #ffffff;
+}
 
-.dark-mode .back-btn {
-  background: linear-gradient(
-    135deg,
-    var(--dark-accent-color),
-    var(--dark-accent-hover)
-  );
+#AH .member-linkedin {
+  top: 2.5rem;
+  right: 2.5rem;
+}
+
+/* ----------------------------------------------------------------------
+   Director name/role badges — fit their own text, not the grid column
+   ---------------------------------------------------------------------- */
+#AH .member-name {
+  display: inline-block;
+  width: fit-content;
+  justify-self: start;
+  background: #2563eb;
+  color: #ffffff;
+  padding: 0.45rem 1.25rem;
+  border-radius: var(--radius-full);
+  font-size: 1.6rem;
+}
+
+#AH .member-role {
+  display: inline-block;
+  width: fit-content;
+  justify-self: start;
+  background: var(--accent-amber);
+  color: #11182b;
+  font-size: 0.95rem;
+}
+
+.dark-mode #AH .member-name {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+/* ----------------------------------------------------------------------
+   Bigger, more legible type across all cards
+   ---------------------------------------------------------------------- */
+.member-name {
+  font-size: 1.4rem;
+}
+
+.member-role {
+  font-size: 0.8rem;
+  padding: 5px 16px;
+}
+
+.member-contribution li {
+  font-size: 0.8rem;
+  padding: 5px 12px;
+}
+
+#AH .member-bio p {
+  font-size: 1.05rem;
 }

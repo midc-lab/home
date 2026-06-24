@@ -132,3 +132,23 @@ document.addEventListener("DOMContentLoaded", function () {
     };
   });
 });
+const ahElement = document.getElementById('AH');
+
+if (ahElement) {
+    
+    ahElement.style.cursor = 'pointer';
+
+    ahElement.addEventListener('click', () => {
+        window.location.href = 'https://www.nita.ac.in/Department/Department_FacultyProfile.aspx?nID=casac&nDeptID=caasa';
+    });
+}
+const akElement = document.getElementById('AK');
+
+if (akElement) {
+    
+    akElement.style.cursor = 'pointer';
+
+    akElement.addEventListener('click', () => {
+        window.location.href = 'https://www.linkedin.com/in/anurag-kar-769358326/';
+    });
+}

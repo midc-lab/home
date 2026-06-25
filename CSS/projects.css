@@ -999,3 +999,110 @@ body.dark-mode {
     transition-duration: 0.01ms !important;
   }
 }
+/* ========================================
+   CUSTOM CURSOR (additive, safe fallback)
+   ======================================== */
+
+:root {
+  /* Edit these two values to restyle the entire custom cursor */
+  --cursor-color: #a020f0;   /* bright purple */
+  --cursor-dot-size: 18px;   /* center dot diameter */
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body.custom-cursor-ready {
+    cursor: none !important;
+  }
+  body.custom-cursor-ready * {
+    cursor: none !important;
+  }
+
+  #cursor-dot,
+  #cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 99999;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+  }
+
+  body.custom-cursor-ready #cursor-dot,
+  body.custom-cursor-ready #cursor-ring {
+    opacity: 1;
+  }
+
+  #cursor-dot {
+    width: var(--cursor-dot-size);
+    height: var(--cursor-dot-size);
+    background: var(--cursor-color);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+    transition: background 0.2s ease, width 0.2s ease, height 0.2s ease;
+  }
+
+  #cursor-ring {
+    width: 34px;
+    height: 34px;
+    border: 1.5px solid var(--cursor-color);
+    opacity: 0.55;
+    transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                height 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.25s ease,
+                background 0.25s ease;
+  }
+
+  body.cursor-hover #cursor-ring {
+    width: 52px;
+    height: 52px;
+    background: color-mix(in srgb, var(--cursor-color) 15%, transparent);
+    border-color: var(--cursor-color);
+  }
+
+  body.cursor-hover #cursor-dot {
+    background: var(--cursor-color);
+  }
+
+  body.cursor-active #cursor-ring {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  #cursor-dot,
+  #cursor-ring {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #cursor-dot,
+  #cursor-ring {
+    display: none;
+  }
+  body.custom-cursor-ready,
+  body.custom-cursor-ready * {
+    cursor: auto !important;
+  }
+}
+.sponsor-logo {
+  height: 140px;
+  width: auto;
+  max-width: 320px;
+  object-fit: contain;
+  filter: grayscale(35%) opacity(0.85);
+  transition: transform 0.3s var(--ease-out), filter 0.3s var(--ease-out);
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .sponsors-static { gap: 2.5rem; }
+  .sponsor-logo { height: 90px; max-width: 220px; }
+}
+
+@media (max-width: 480px) {
+  .sponsors-static { gap: 2rem; }
+  .sponsor-logo { height: 70px; max-width: 170px; }
+}

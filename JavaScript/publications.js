@@ -476,3 +476,84 @@ if (typeof module !== 'undefined' && module.exports) {
         observer.observe(document.body, { childList: true, subtree: true });
     }
 })();
+// ============================================
+//   CUSTOM CURSOR (additive, safe fallback)
+// ============================================
+(function () {
+    'use strict';
+
+    if (window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    try {
+        const dot = document.createElement('div');
+        dot.id = 'cursor-dot';
+        const ring = document.createElement('div');
+        ring.id = 'cursor-ring';
+        document.body.appendChild(dot);
+        document.body.appendChild(ring);
+
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let ringX = mouseX, ringY = mouseY;
+        let hasMoved = false;
+
+        dot.style.left = mouseX + 'px';
+        dot.style.top = mouseY + 'px';
+        ring.style.left = ringX + 'px';
+        ring.style.top = ringY + 'px';
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            dot.style.left = mouseX + 'px';
+            dot.style.top = mouseY + 'px';
+
+            // Only hide the native cursor once we have a real pointer
+            // position to replace it with.
+            if (!hasMoved) {
+                hasMoved = true;
+                document.body.classList.add('custom-cursor-ready');
+            }
+        });
+
+        function animateRing() {
+            ringX += (mouseX - ringX) * 0.18;
+            ringY += (mouseY - ringY) * 0.18;
+            ring.style.left = ringX + 'px';
+            ring.style.top = ringY + 'px';
+            requestAnimationFrame(animateRing);
+        }
+        animateRing();
+
+        const interactiveSelector = 'a, button, input, textarea, select, [role="button"], .btn, label';
+
+        document.addEventListener('mouseover', (e) => {
+            if (e.target.closest(interactiveSelector)) {
+                document.body.classList.add('cursor-hover');
+            }
+        });
+        document.addEventListener('mouseout', (e) => {
+            if (e.target.closest(interactiveSelector)) {
+                document.body.classList.remove('cursor-hover');
+            }
+        });
+
+        document.addEventListener('mousedown', () => document.body.classList.add('cursor-active'));
+        document.addEventListener('mouseup', () => document.body.classList.remove('cursor-active'));
+
+        document.addEventListener('mouseleave', () => {
+            dot.style.opacity = '0';
+            ring.style.opacity = '0';
+        });
+        document.addEventListener('mouseenter', () => {
+            dot.style.opacity = '1';
+            ring.style.opacity = '1';
+        });
+    } catch (err) {
+        // If anything above fails, the native cursor was never hidden
+        // (CSS only hides it via .custom-cursor-ready), so the page
+        // remains fully usable.
+        console.error('[Custom Cursor] Failed to initialize:', err);
+    }
+})();

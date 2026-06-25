@@ -409,3 +409,70 @@ if (document.readyState === 'loading') {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { SmartHeader, HeaderLoader };
 }
+// ============================================
+//   MOBILE HAMBURGER MENU (additive, standalone)
+// ============================================
+(function () {
+    'use strict';
+
+    function initMobileMenu() {
+        const navToggle = document.querySelector('.nav-toggle');
+        const navigation = document.querySelector('.navigation');
+
+        if (!navToggle || !navigation) return false;
+
+        const backdrop = document.createElement('div');
+        backdrop.className = 'nav-backdrop';
+        document.body.appendChild(backdrop);
+
+        let isOpen = false;
+
+        function openMenu() {
+            isOpen = true;
+            navigation.classList.add('nav-open');
+            backdrop.classList.add('visible');
+            navToggle.setAttribute('aria-expanded', 'true');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            isOpen = false;
+            navigation.classList.remove('nav-open');
+            backdrop.classList.remove('visible');
+            navToggle.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        }
+
+        navToggle.addEventListener('click', () => {
+            isOpen ? closeMenu() : openMenu();
+        });
+
+        backdrop.addEventListener('click', closeMenu);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && isOpen) closeMenu();
+        });
+
+        navigation.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768 && isOpen) closeMenu();
+        });
+
+        return true;
+    }
+
+    // The header HTML loads asynchronously (via fetch in HeaderLoader),
+    // so .nav-toggle won't exist yet on DOMContentLoaded. Watch for it
+    // instead of guessing a timeout.
+    if (!initMobileMenu()) {
+        const observer = new MutationObserver(() => {
+            if (initMobileMenu()) {
+                observer.disconnect();
+            }
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+    }
+})();

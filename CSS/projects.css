@@ -894,3 +894,108 @@ body.dark-mode {
     transition-duration: 0.01ms !important;
   }
 }
+/* ========================================
+   MOBILE HAMBURGER MENU (additive)
+   ======================================== */
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.nav-toggle:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.nav-toggle-bar {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: #313131;
+  border-radius: 2px;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.nav-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 98;
+}
+
+.nav-backdrop.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .navigation {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: min(78vw, 320px);
+    background: #ffffff;
+    box-shadow: -8px 0 30px rgba(0, 0, 0, 0.15);
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 99;
+    padding-top: 6rem;
+  }
+
+  .navigation.nav-open {
+    transform: translateX(0);
+  }
+
+  .navigation ul {
+    display: flex !important; /* overrides the existing display:none at 576px */
+    flex-direction: column;
+    gap: 0;
+    padding: 0 1.75rem;
+  }
+
+  .navigation ul li {
+    border-bottom: 1px solid #eeeeee;
+  }
+
+  .nav-link {
+    display: block;
+    padding: 1rem 0;
+    font-size: 1.05rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navigation,
+  .nav-toggle-bar,
+  .nav-backdrop {
+    transition-duration: 0.01ms !important;
+  }
+}

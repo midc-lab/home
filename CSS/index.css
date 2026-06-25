@@ -3680,11 +3680,12 @@ textarea:focus::placeholder {
    HEADER COMPONENT STYLES
    ======================================== */
 
+/* Skip Link Styling */
 .skip-link {
   position: absolute;
   top: -40px;
   left: 6px;
-  background: var(--accent-primary, #1b2f6b);
+  background: var(--accent-primary, #007bff);
   color: white;
   padding: 8px;
   text-decoration: none;
@@ -3703,10 +3704,10 @@ textarea:focus::placeholder {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.75rem 2rem;
-  background-color: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 1px 3px 0 rgba(17, 24, 43, 0.08);
-  border-bottom: 1px solid #e6e2d6;
+  padding: 1rem 2rem;
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #dee2e6;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -3714,7 +3715,7 @@ textarea:focus::placeholder {
 }
 
 .header.scrolled {
-  box-shadow: 0 10px 24px -6px rgba(17, 24, 43, 0.12);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
 }
 
 .header.header-hidden {
@@ -3726,16 +3727,16 @@ textarea:focus::placeholder {
 .logo-container {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
-  min-width: 0;
+  gap: 1rem;
 }
 
 .logo {
-  height: 56px;
-  width: auto;
-  margin: 0;
-  border-radius: 4px;
-  object-fit: contain;
+  height: 70px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 0%;
+  object-fit: cover;
   transition: transform 0.3s cubic-bezier(0, 0, 0.2, 1);
   cursor: pointer;
 }
@@ -3745,36 +3746,35 @@ textarea:focus::placeholder {
 }
 
 .vertical-line {
-  width: 2px;
-  height: 40px;
-  background-color: #e6e2d6;
-  flex-shrink: 0;
+  width: 3px;
+  height: 60px;
+  background-color: #313131;
 }
 
 .lab-name {
   font-family: "Space Grotesk", sans-serif;
-  font-size: 1.05rem;
-  line-height: 1.25;
+  font-size: 1.3rem;
   font-weight: 700;
-  color: var(--text-primary, #11182b);
-  margin: 0;
-  white-space: nowrap;
+  background: linear-gradient(135deg, var(--accent-primary, #007bff), var(--accent-secondary, #6c757d));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);
 }
 
-/* Navigation (desktop) */
+/* Navigation */
 .navigation ul {
   display: flex;
   list-style: none;
-  gap: 1.75rem;
+  gap: 2rem;
   margin: 0;
   padding: 0;
 }
 
 .nav-link {
   text-decoration: none;
-  color: var(--text-secondary, #525b72);
+  color: var(--text-secondary, #495057);
   font-weight: 500;
-  font-size: 0.95rem;
   position: relative;
   padding-bottom: 0.3rem;
   transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);
@@ -3787,8 +3787,7 @@ textarea:focus::placeholder {
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: var(--accent-amber, #f2a900);
-  border-radius: 9999px;
+  background-color: var(--accent-primary, #007bff);
   transition: width 0.3s cubic-bezier(0, 0, 0.2, 1);
 }
 
@@ -3797,158 +3796,81 @@ textarea:focus::placeholder {
 }
 
 .nav-link:hover {
-  color: var(--accent-primary, #1b2f6b);
+  color: var(--accent-primary, #007bff);
 }
 
+/* Removed problematic hover overlay effect that was causing grey overlay */
+
+/* Active Navigation State */
 .nav-link.active {
-  color: var(--accent-primary, #1b2f6b);
-  font-weight: 600;
+  color: var(--accent-primary, #007bff);
 }
 
 .nav-link.active::after {
   width: 100%;
-  background-color: var(--accent-primary, #1b2f6b);
-}
-
-/* ========================================
-   HAMBURGER TOGGLE BUTTON
-   ======================================== */
-.nav-toggle {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  width: 44px;
-  height: 44px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  border-radius: 8px;
-  flex-shrink: 0;
-}
-
-.nav-toggle:hover {
-  background: rgba(27, 47, 107, 0.06);
-}
-
-.nav-toggle-bar {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background-color: var(--text-primary, #11182b);
-  border-radius: 2px;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, background-color 0.3s ease;
-}
-
-/* Turns into an "X" when menu is open */
-.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
-.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) {
-  opacity: 0;
-}
-.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
-}
-.nav-toggle[aria-expanded="true"] .nav-toggle-bar {
-  background-color: var(--accent-primary, #1b2f6b);
 }
 
 /* ========================================
    RESPONSIVE DESIGN
    ======================================== */
 
-@media (max-width: 768px) {
-  .nav-toggle {
-    display: flex;
-  }
-
-  .navigation {
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100vh;
-    width: min(78vw, 320px);
-    background: #ffffff;
-    box-shadow: -8px 0 30px rgba(17, 24, 43, 0.12);
-    transform: translateX(100%);
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 99;
-    padding-top: 6rem;
-  }
-
-  .navigation.nav-open {
-    transform: translateX(0);
-  }
-
-  .navigation ul {
-    flex-direction: column;
-    gap: 0;
-    padding: 0 1.75rem;
-  }
-
-  .navigation ul li {
-    border-bottom: 1px solid #f1eee5;
-  }
-
-  .nav-link {
-    display: block;
-    padding: 1rem 0;
-    font-size: 1.05rem;
-  }
-
-  .nav-link::after {
-    display: none;
-  }
-
-  .nav-link.active {
-    color: var(--accent-primary, #1b2f6b);
-  }
-
-  /* Dimmed backdrop behind the open mobile menu */
-  .nav-backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(17, 24, 43, 0.35);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    z-index: 98;
-  }
-
-  .nav-backdrop.visible {
-    opacity: 1;
-    visibility: visible;
-  }
-}
-
+/* Mobile devices */
 @media (max-width: 480px) {
   .header {
-    padding: 0.6rem 1rem;
+    padding: 0.75rem 1rem;
   }
-
+  
   .logo {
-    height: 42px;
+    height: 50px;
   }
-
+  
   .lab-name {
-    font-size: 0.8rem;
+    font-size: 1.1rem;
+  }
+  
+  .navigation ul {
+    gap: 1rem;
+  }
+  
+  .nav-link {
+    font-size: 0.9rem;
   }
 }
 
+/* Tablet devices */
 @media (min-width: 481px) and (max-width: 768px) {
   .header {
-    padding: 0.75rem 1.25rem;
+    padding: 0.875rem 1.5rem;
+  }
+  
+  .navigation ul {
+    gap: 1.5rem;
   }
 }
 
+/* Mobile navigation - hide on very small screens */
+@media (max-width: 576px) {
+  .navigation ul {
+    display: none; /* You might want to implement a hamburger menu here */
+  }
+}
+
+/* Touch device optimizations */
 @media (hover: none) and (pointer: coarse) {
   .nav-link {
-    min-height: 44px;
+    min-height: 44px; /* iOS touch target size */
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .nav-link:hover {
+    transform: none;
   }
 }
 
+/* High-density displays */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .logo {
     image-rendering: -webkit-optimize-contrast;
@@ -3956,13 +3878,13 @@ textarea:focus::placeholder {
   }
 }
 
+/* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   .header,
   .logo,
   .nav-link,
   .nav-link::after,
-  .navigation,
-  .nav-toggle-bar {
+  .nav-link::before {
     transition-duration: 0.01ms !important;
   }
 }

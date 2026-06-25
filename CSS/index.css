@@ -4081,3 +4081,18 @@ textarea:focus::placeholder {
     cursor: auto !important;
   }
 }
+/* ============================================================
+   HERO — reduce the gap below the ticker
+   ============================================================ */
+#home.full-width-hero {
+  min-height: 60vh;
+  padding-top: 2.5rem;
+  padding-bottom: 3rem;
+}
+
+@media (max-width: 640px) {
+  #home.full-width-hero {
+    min-height: auto;
+    padding-top: 2rem;
+  }
+}

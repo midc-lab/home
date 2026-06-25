@@ -1142,3 +1142,80 @@ body.dark-mode {
     transition-duration: 0.01ms !important;
   }
 }
+/* ----------------------------------------------------------------------
+   Director social row: Info / Scholar / LinkedIn
+   ---------------------------------------------------------------------- */
+#AH .member-socials {
+  position: absolute;
+  top: 2.5rem;
+  right: 2.5rem;
+  display: flex;
+  gap: 0.6rem;
+}
+
+/* Override the single-icon absolute positioning since these now sit
+   inside a flex row instead of being individually pinned */
+#AH .member-socials .member-social {
+  position: relative;
+  top: auto;
+  right: auto;
+}
+
+.member-social {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: background 0.25s var(--ease-out), color 0.25s var(--ease-out), transform 0.25s var(--ease-out);
+}
+
+.member-social:hover {
+  transform: translateY(-3px);
+}
+
+/* Info button — neutral grey/navy */
+.member-info {
+  background: rgba(27, 47, 107, 0.08);
+  color: var(--accent-primary);
+}
+.member-info:hover {
+  background: var(--accent-primary);
+  color: #ffffff;
+}
+
+/* Google Scholar button — uses Scholar's own blue */
+.member-scholar {
+  background: rgba(66, 133, 244, 0.1);
+  color: #4285f4;
+}
+.member-scholar:hover {
+  background: #4285f4;
+  color: #ffffff;
+}
+
+/* LinkedIn — keep its brand blue, just remove the old solo positioning */
+.member-linkedin {
+  background: rgba(27,47,107,0.08);
+  color: var(--accent-primary);
+}
+.member-linkedin:hover {
+  background: #0a66c2;
+  color: #ffffff;
+}
+
+.dark-mode .member-info {
+  background: rgba(255,255,255,0.08);
+  color: var(--dark-accent-color);
+}
+.dark-mode .member-scholar {
+  background: rgba(66, 133, 244, 0.15);
+  color: #8ab4f8;
+}
+.dark-mode .member-linkedin {
+  background: rgba(255,255,255,0.08);
+  color: var(--dark-accent-color);
+}

@@ -132,16 +132,16 @@ document.addEventListener("DOMContentLoaded", function () {
     };
   });
 });
-const ahElement = document.getElementById('AH');
+// const ahElement = document.getElementById('AH');
 
-if (ahElement) {
+// if (ahElement) {
     
-    ahElement.style.cursor = 'pointer';
+//     ahElement.style.cursor = 'pointer';
 
-    ahElement.addEventListener('click', () => {
-        window.location.href = 'https://www.nita.ac.in/Department/Department_FacultyProfile.aspx?nID=casac&nDeptID=caasa';
-    });
-}
+//     ahElement.addEventListener('click', () => {
+//         window.location.href = 'https://www.nita.ac.in/Department/Department_FacultyProfile.aspx?nID=casac&nDeptID=caasa';
+//     });
+// }
 const akElement = document.getElementById('AK');
 
 if (akElement) {

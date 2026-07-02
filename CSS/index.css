@@ -3899,7 +3899,8 @@ textarea:focus::placeholder {
     padding-top: 2rem;
   }
 }
-#faq{
+#faq, #recruitment, #about, #research, #contact_us{
   padding:0px;
+  padding-top: 15px;
   padding-bottom: 15px;
 }

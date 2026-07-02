@@ -113,19 +113,16 @@
   --glass-shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12), 0 4px 16px rgba(0, 0, 0, 0.16);
   --glass-shadow-xl: 0 24px 64px rgba(0, 0, 0, 0.16), 0 8px 24px rgba(0, 0, 0, 0.20);
   
-  /* Border Radius Scale */
   --radius-none: 0;
-  --radius-xs: 0.125rem;     /* 2px */
-  --radius-sm: 0.25rem;      /* 4px */
-  --radius-md: 0.375rem;     /* 6px */
-  --radius-lg: 0.5rem;       /* 8px */
-  --radius-xl: 0.75rem;      /* 12px */
-  --radius-2xl: 1rem;        /* 16px */
-  --radius-3xl: 1.5rem;      /* 24px */
-  --radius-4xl: 2rem;        /* 32px */
+  --radius-xs: 0.125rem;    
+  --radius-sm: 0.25rem;     
+  --radius-md: 0.375rem;    
+  --radius-lg: 0.5rem;       
+  --radius-xl: 0.75rem;    
+  --radius-2xl: 1rem;       
+  --radius-3xl: 1.5rem;   
+  --radius-4xl: 2rem;     
   --radius-full: 9999px;
-  
-  /* Animation System */
   --duration-75: 75ms;
   --duration-100: 100ms;
   --duration-150: 150ms;
@@ -135,7 +132,6 @@
   --duration-700: 700ms;
   --duration-1000: 1000ms;
   
-  /* Modern Easing Curves */
   --ease-linear: linear;
   --ease-in: cubic-bezier(0.4, 0, 1, 1);
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
@@ -145,21 +141,19 @@
   --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --ease-snappy: cubic-bezier(0.25, 1, 0.5, 1);
   
-  /* Container Sizes */
-  --container-xs: 20rem;     /* 320px */
-  --container-sm: 24rem;     /* 384px */
-  --container-md: 28rem;     /* 448px */
-  --container-lg: 32rem;     /* 512px */
-  --container-xl: 36rem;     /* 576px */
-  --container-2xl: 42rem;    /* 672px */
-  --container-3xl: 48rem;    /* 768px */
-  --container-4xl: 56rem;    /* 896px */
-  --container-5xl: 64rem;    /* 1024px */
-  --container-6xl: 72rem;    /* 1152px */
-  --container-7xl: 80rem;    /* 1280px */
+  --container-xs: 20rem;     
+  --container-sm: 24rem;     
+  --container-md: 28rem;     
+  --container-lg: 32rem;     
+  --container-xl: 36rem;     
+  --container-2xl: 42rem;    
+  --container-3xl: 48rem;    
+  --container-4xl: 56rem;    
+  --container-5xl: 64rem;    
+  --container-6xl: 72rem;    
+  --container-7xl: 80rem;    
   --container-full: 100%;
   
-  /* Z-Index Scale */
   --z-0: 0;
   --z-10: 10;
   --z-20: 20;
@@ -178,7 +172,6 @@
   --z-loading: 9999;
 }
 
-/* CSS Reset with Performance Optimizations */
 *,
 *::before,
 *::after {
@@ -187,15 +180,11 @@
   box-sizing: border-box;
 }
 
-/* Removed global transitions to prevent header glitching */
-
-/* Smooth scrolling for the entire page */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px; /* Account for fixed header */
+  scroll-padding-top: 80px; 
 }
 
-/* Prevent animations on page load */
 .preload * {
   animation-duration: 0s !important;
   animation-delay: 0s !important;
@@ -210,7 +199,6 @@ body {
   line-height: 1.6;
 }
 
-/* Skip Link Styling */
 .skip-link {
   position: absolute;
   top: -40px;
@@ -229,11 +217,6 @@ body {
   top: 6px;
 }
 
-
-/* Header styles removed - handled by header component */
-
-
-/* Research Section - Modern & Professional */
 .research-section {
   padding: var(--spacing-24) 5%;
   background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
@@ -328,8 +311,8 @@ body {
   justify-content: center;
   flex-shrink: 0;
   transition: all 0.4s var(--ease-bounce);
-  opacity: 1; /* Always visible */
-  transform: scale(1); /* Default scale */
+  opacity: 1; 
+  transform: scale(1);
   box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
   position: relative;
   overflow: hidden;
@@ -376,23 +359,19 @@ body {
   line-height: var(--leading-relaxed);
   margin: 0;
 }
-
-/* Hero Section */
-/* 1. Reduce the height of the hero section */
 .hero-section {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: var(--spacing-16) 5%; /* Reduced padding */
+    padding: var(--spacing-16) 5%; 
     gap: var(--spacing-12);
     background-color: var(--bg-secondary);
-    min-height: 50vh; /* Changed from 80vh so it doesn't cover the whole screen */
+    min-height: 50vh; 
     position: relative;
     overflow: hidden;
     margin: 20px;
 }
 
-/* 2. Styling for the new Right Side Highlights */
 .hero-highlights {
     flex: 1;
     display: flex;
@@ -422,10 +401,9 @@ body {
     margin: 0;
 }
 
-/* 3. Make the Scrolling Gallery Images Much Bigger */
 .gallery-track img {
-    height: 400px; /* Increased from 280px */
-    width: 600px;  /* Increased from 400px */
+    height: 400px; 
+    width: 600px;  
     object-fit: cover;
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow-md);
@@ -433,10 +411,9 @@ body {
     border: 1px solid var(--border-color);
 }
 
-/* 4. Update the Mobile View for the new elements */
 @media (max-width: 768px) {
     .gallery-track img {
-        height: 250px; /* Scaled up for mobile too */
+        height: 250px;
         width: 380px;
     }
     
@@ -449,24 +426,20 @@ body {
         max-width: 100%;
     }
 }
-/* --- Full Width Hero Section Updates --- */
 
 .hero-section {
     display: flex;
     align-items: center;
-    justify-content: center; /* Centers the content horizontally */
+    justify-content: center; 
     padding: var(--spacing-20) 5%;
     min-height: 50vh;
     position: relative;
     overflow: hidden;
-    margin: 20px 0; /* Removed side margins to allow full width */
-    
-    /* Unified background instead of the split 50/50 look */
+    margin: 20px 0;
     background: linear-gradient(135deg, rgba(37, 99, 235, 0.02) 0%, rgba(14, 165, 233, 0.06) 100%);
-    border-radius: var(--radius-2xl); /* Optional: rounds the edges of the whole section */
+    border-radius: var(--radius-2xl); 
 }
 
-/* Remove the old 50% split background */
 .hero-section::before {
     display: none; 
 }
@@ -475,34 +448,31 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centers the text and buttons */
-    text-align: center; /* Centers the text alignment */
+    align-items: center;
+    text-align: center;
     gap: var(--spacing-6);
-    max-width: 1000px; /* Expanded from 600px to cover more width, but keeps text readable */
+    max-width: 1000px;
     margin: 0 auto;
     position: relative;
     z-index: 1;
 }
 
-/* Adjust the blue underline to animate from the center out */
 .hero-title::after {
     content: '';
     position: absolute;
     bottom: -10px;
-    left: 50%; /* Move to center */
+    left: 50%;
     width: 100%;
     height: 3px;
     background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
-    transform: translateX(-50%) scaleX(0); /* Center transform */
+    transform: translateX(-50%) scaleX(0);
     transform-origin: center;
     transition: transform 0.8s var(--ease-out) 0.5s;
 }
 
 .hero-title.animate::after {
-    transform: translateX(-50%) scaleX(1); /* Expand from center */
+    transform: translateX(-50%) scaleX(1);
 }
-
-/* Ensure the buttons stay centered next to each other */
 .hero-cta {
     display: flex;
     justify-content: center;
@@ -591,7 +561,6 @@ body {
   transform: scale(1.02);
 }
 
-/* About Section */
 .about-section,
 .project-highlights {
   padding: 4rem 5%;
@@ -651,7 +620,6 @@ body {
   color: var(--accent-color);
 }
 
-/* Project Highlights */
 .project-slider {
   display: flex;
   justify-content: space-between;
@@ -720,7 +688,6 @@ body {
   width: 100%;
 }
 
-/* Footer */
 
 .footer-button {
   text-decoration: none;
@@ -767,7 +734,6 @@ body {
 }
 
 .footer-img {
-  /* width: 100px; */
   height: 100px;
   border-radius: 10px;
   margin-bottom: 1rem;
@@ -860,7 +826,6 @@ body {
   }
 }
 
-/* Toggle Switch */
 .theme-toggle {
   position: relative;
   width: 100px;
@@ -921,7 +886,6 @@ body {
   box-shadow: none;
 }
 
-/* Responsive Design */
 @media screen and (max-width: 768px) {
   .header,
   .hero-section,
@@ -937,10 +901,8 @@ body {
   }
 }
 
-/* Contact Us CSS*/
 .contact_us-section {
   padding: 4rem 5%;
-  /* margin: 2rem 5%; */
   background-color: var(--bg-primary);
 }
 .section-title {
@@ -973,7 +935,6 @@ body {
   color: #34495e;
 }
 
-/* Contact wrapper */
 .contact-wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -1067,7 +1028,6 @@ body {
   box-shadow: 0 6px 15px rgba(52, 152, 219, 0.3);
 }
 
-/* Contact form */
 .contact-form-container {
   flex: 2;
   min-width: 400px;
@@ -1183,7 +1143,6 @@ input[type="checkbox"] {
   transform: translateY(1px);
 }
 
-/* Toggle Switch */
 .theme-toggle {
   position: relative;
   width: 100px;
@@ -1244,7 +1203,6 @@ input[type="checkbox"] {
   box-shadow: none;
 }
 
-/* Map section */
 .map-container {
   margin-bottom: 50px;
 }
@@ -1281,7 +1239,6 @@ input[type="checkbox"] {
   margin-bottom: 20px;
 }
 
-/* FAQ section */
 .faq-section {
   margin-bottom: 50px;
 }
@@ -1369,7 +1326,6 @@ input[type="checkbox"] {
   color: #34495e;
 }
 
-/* Button container */
 .btn-container {
   text-align: center;
   margin-top: 40px;
@@ -1398,7 +1354,6 @@ input[type="checkbox"] {
   transform: translateY(1px);
 }
 
-/* Responsive design */
 @media (max-width: 992px) {
   #contact_us-section {
     padding: 30px;
@@ -1488,7 +1443,6 @@ input[type="checkbox"] {
   }
 }
 
-/* Animation for form elements */
 .form-group {
   opacity: 0;
   transform: translateY(10px);
@@ -1521,7 +1475,6 @@ input[type="checkbox"] {
   animation-delay: 0.6s;
 }
 
-/* Focus effect for inputs */
 input:focus::placeholder,
 textarea:focus::placeholder {
   opacity: 0.5;
@@ -1529,7 +1482,6 @@ textarea:focus::placeholder {
   transition: all 0.3s ease;
 }
 
-/* Dark Mode Specific Styles for Contact Page */
 
 .info-cards-row {
   display: flex;
@@ -1543,11 +1495,6 @@ textarea:focus::placeholder {
   min-width: 250px;
 }
 
-/* ========================================
-   MODERN ANIMATIONS & MICRO-INTERACTIONS
-   ======================================== */
-
-/* Scroll-triggered animations */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -1603,7 +1550,6 @@ textarea:focus::placeholder {
   }
 }
 
-/* Animation classes for JavaScript to trigger */
 .animate-fade-in-up {
   animation: fadeInUp 0.8s var(--ease-out) forwards;
 }
@@ -1624,23 +1570,17 @@ textarea:focus::placeholder {
   animation: slideInDown 0.6s var(--ease-out) forwards;
 }
 
-/* Initial state for animated elements */
 .animate-on-scroll {
   opacity: 0;
-  animation: fadeInFallback 1s ease-out 2s forwards; /* Fallback animation after 2s */
+  animation: fadeInFallback 1s ease-out 2s forwards;
 }
 
-/* Fallback animation in case JavaScript fails */
 @keyframes fadeInFallback {
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-
-/* Header component handles all header styling - no overrides */
-
-/* Modern Hero Section */
 .hero-section {
   position: relative;
   overflow: hidden;
@@ -1700,7 +1640,6 @@ textarea:focus::placeholder {
   transform: translateY(0);
 }
 
-/* Enhanced Buttons */
 .btn {
   position: relative;
   overflow: hidden;
@@ -1749,7 +1688,6 @@ textarea:focus::placeholder {
   box-shadow: var(--shadow-lg);
 }
 
-/* Banner inside hero section */
 .hero-banner {
   position: absolute;
   bottom: 0;
@@ -1786,7 +1724,6 @@ textarea:focus::placeholder {
 
 
 
-/* Enhanced Research Items */
 .research-item {
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-md);
@@ -1835,7 +1772,6 @@ textarea:focus::placeholder {
   box-shadow: var(--shadow-lg);
 }
 
-/* Enhanced Cards */
 .project-card, .info-card {
   border-radius: var(--radius-xl);
   transition: all 0.4s var(--ease-out);
@@ -1866,7 +1802,6 @@ textarea:focus::placeholder {
   border-color: rgba(37, 99, 235, 0.2);
 }
 
-/* Modern Section Headers */
 .section-header h2 {
   position: relative;
   display: inline-block;
@@ -1894,7 +1829,6 @@ textarea:focus::placeholder {
   transform: scaleX(1);
 }
 
-/* Loading Animation */
 @keyframes pulse {
   0%, 100% {
     opacity: 1;
@@ -1908,7 +1842,6 @@ textarea:focus::placeholder {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/* Floating Action Elements */
 .floating {
   animation: float 3s ease-in-out infinite;
 }
@@ -1922,15 +1855,12 @@ textarea:focus::placeholder {
   }
 }
 
-/* Stagger Animation Delays */
 .stagger-1 { animation-delay: 0.1s; }
 .stagger-2 { animation-delay: 0.2s; }
 .stagger-3 { animation-delay: 0.3s; }
 .stagger-4 { animation-delay: 0.4s; }
 .stagger-5 { animation-delay: 0.5s; }
 .stagger-6 { animation-delay: 0.6s; }
-
-/* Modern Focus States */
 *:focus {
   outline: 2px solid var(--accent-primary);
   outline-offset: 2px;
@@ -1938,7 +1868,6 @@ textarea:focus::placeholder {
 }
 
 
-/* Enhanced Social Icons */
 .social-icon {
   position: relative;
   overflow: hidden;
@@ -1962,7 +1891,6 @@ textarea:focus::placeholder {
   height: 200%;
 }
 
-/* Responsive Enhancements */
 @media (max-width: 768px) {
   .hero-section::before {
     display: none;
@@ -1981,14 +1909,12 @@ textarea:focus::placeholder {
   }
 }
 
-/* Performance Optimizations */
 .gpu-accelerated {
   transform: translateZ(0);
   backface-visibility: hidden;
   perspective: 1000px;
 }
 
-/* Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -2002,12 +1928,6 @@ textarea:focus::placeholder {
     animation: none;
   }
 }
-
-/* ========================================
-   ENHANCED RESPONSIVE DESIGN
-   ======================================== */
-
-/* Mobile-first responsive improvements */
 @media (max-width: 480px) {
   .header {
     padding: var(--space-md) var(--space-lg);
@@ -2049,7 +1969,6 @@ textarea:focus::placeholder {
   }
 }
 
-/* Tablet optimizations */
 @media (min-width: 481px) and (max-width: 1024px) {
   .research-content {
     grid-template-columns: 1fr;
@@ -2076,7 +1995,6 @@ textarea:focus::placeholder {
   }
 }
 
-/* Desktop enhancements */
 @media (min-width: 1200px) {
   .hero-section {
     padding: var(--space-4xl) 8%;
@@ -2096,17 +2014,16 @@ textarea:focus::placeholder {
   }
 }
 
-/* Touch device optimizations */
 @media (hover: none) and (pointer: coarse) {
   .btn, .nav-link, .social-icon {
-    min-height: 44px; /* iOS touch target size */
+    min-height: 44px;
     min-width: 44px;
   }
   
   .research-item:hover,
   .project-card:hover,
   .info-card:hover {
-    transform: none; /* Disable hover transforms on touch devices */
+    transform: none;
   }
   
   .btn:hover,
@@ -2115,19 +2032,12 @@ textarea:focus::placeholder {
   }
 }
 
-/* High-density displays */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .logo, .footer-img {
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
   }
 }
-
-/* ========================================
-   LOADING ANIMATIONS & SKELETON LOADERS
-   ======================================== */
-
-/* Skeleton loader animations */
 @keyframes skeleton-loading {
   0% {
     background-position: -200px 0;
@@ -2142,9 +2052,6 @@ textarea:focus::placeholder {
   background-size: 200px 100%;
   animation: skeleton-loading 1.5s infinite;
 }
-
-
-/* Loading states for images */
 .loading-image {
   position: relative;
   overflow: hidden;
@@ -2175,8 +2082,6 @@ textarea:focus::placeholder {
 .loading-image.loaded img {
   opacity: 1;
 }
-
-/* Page transition effects */
 .page-transition {
   position: fixed;
   top: 0;
@@ -2213,7 +2118,6 @@ textarea:focus::placeholder {
 
 
 
-/* Staggered content loading */
 .content-loader {
   opacity: 0;
   transform: translateY(20px);
@@ -2232,7 +2136,6 @@ textarea:focus::placeholder {
 .content-loader:nth-child(5) { transition-delay: 0.5s; }
 .content-loader:nth-child(6) { transition-delay: 0.6s; }
 
-/* Enhanced form loading states */
 .form-loading .form-group {
   pointer-events: none;
   opacity: 0.6;
@@ -2257,7 +2160,6 @@ textarea:focus::placeholder {
   animation: spin 1s linear infinite;
 }
 
-/* Progressive image loading */
 .progressive-image {
   position: relative;
   display: block;
@@ -2293,7 +2195,6 @@ textarea:focus::placeholder {
   visibility: hidden;
 }
 
-/* Ensure map inside info-card stays responsive and fits card size */
 .info-card .map-frame {
     width: 100%;
     height: 250px;
@@ -2310,12 +2211,10 @@ textarea:focus::placeholder {
     display: block;
 }
 
-/* Optional: Adjust icon size in Find Us card */
 .info-card .icon-wrapper .fas.fa-map {
     font-size: 1.8rem;
 }
 
-/* FAQ Styles */
 .faq-section {
   padding: var(--spacing-16) 5%;
   max-width: 1200px;
@@ -2370,7 +2269,7 @@ textarea:focus::placeholder {
 }
 
 .faq-item.active .toggle-icon {
-  transform: rotate(180deg); /* Optional: rotates the icon for better UX */
+  transform: rotate(180deg);
 }
 
 .faq-answer {
@@ -2381,19 +2280,16 @@ textarea:focus::placeholder {
   transition: max-height var(--duration-300) var(--ease-out),
               opacity var(--duration-300) var(--ease-out),
               visibility var(--duration-300) var(--ease-out);
-  padding: 0 var(--spacing-6); /* Padding when expanded */
+  padding: 0 var(--spacing-6);
   font-size: var(--text-base);
   color: var(--text-secondary);
   line-height: var(--leading-relaxed);
 }
 
 .faq-item.active .faq-answer {
-  padding: var(--spacing-4) var(--spacing-6); /* Add padding only when expanded */
+  padding: var(--spacing-4) var(--spacing-6);
 }
 
-/* -------------------------------------------------
-   FAQ – pure CSS + tiny JS (max-height transition)
-   ------------------------------------------------- */
 .faq-section { padding: var(--spacing-16) 5%; max-width: 1200px; margin: 0 auto; }
 
 .faq-container { display: flex; flex-direction: column; gap: var(--spacing-4); }
@@ -2428,7 +2324,7 @@ textarea:focus::placeholder {
 .faq-item.active .toggle-icon { transform: rotate(180deg); }
 
 .faq-answer {
-  max-height: 0;               /* hidden by default */
+  max-height: 0;             
   overflow: hidden;
   opacity: 0;
   visibility: hidden;
@@ -2442,22 +2338,17 @@ textarea:focus::placeholder {
     padding    var(--duration-300) var(--ease-out);
 }
 .faq-item.active .faq-answer {
-  max-height: 500px;           /* large enough for any answer */
+  max-height: 500px;          
   opacity: 1;
   visibility: visible;
   padding: var(--spacing-4) var(--spacing-6);
 }
-/* ============================================ */
-/* NEW ADDITIONS: TICKER, GALLERY, RECRUITMENT  */
-/* ============================================ */
-
-/* 1. Hot News Ticker */
 .news-ticker-container {
     display: flex;
     align-items: center;
-    background-color: #fef08a; /* Professional light yellow */
+    background-color: #fef08a;
     border-bottom: 2px solid #fde047;
-    color: #854d0e; /* High contrast dark yellow/brown text */
+    color: #854d0e;
     overflow: hidden;
     position: relative;
     z-index: 10;
@@ -2488,7 +2379,6 @@ textarea:focus::placeholder {
 
 .news-ticker-scroll p {
     display: inline-block;
-    padding-left: 100%; /* Start strictly off-screen right */
     animation: marquee-text 35s linear infinite;
     margin: 0;
     font-weight: var(--font-medium);
@@ -2508,7 +2398,6 @@ textarea:focus::placeholder {
     cursor: default;
 }
 
-/* 2. Infinite Scrolling Image Gallery */
 .gallery-section {
     padding: var(--spacing-10) 0;
     background-color: var(--bg-primary);
@@ -2526,7 +2415,6 @@ textarea:focus::placeholder {
     display: flex;
     gap: var(--spacing-6);
     padding: 0 var(--spacing-3);
-    /* The animation duration dictates scroll speed */
     animation: scroll-gallery 45s linear infinite;
     width: max-content;
 }
@@ -2545,19 +2433,14 @@ textarea:focus::placeholder {
     transform: translateY(-8px) scale(1.02);
     box-shadow: var(--shadow-xl);
 }
-
-/* Pause the whole track when hovering anywhere in the gallery */
 .gallery-marquee:hover .gallery-track {
     animation-play-state: paused;
 }
 
 @keyframes scroll-gallery {
     0% { transform: translateX(0); }
-    /* Because we duplicated the 10 images exactly, translating by -50% loops it perfectly */
     100% { transform: translateX(-50%); } 
 }
-
-/* 3. Recruitment Section */
 .recruitment-section {
     padding: var(--spacing-20) 5%;
     background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
@@ -2636,7 +2519,6 @@ textarea:focus::placeholder {
     margin-top: auto;
 }
 
-/* Fix responsive layout for gallery & news ticker on smaller devices */
 @media (max-width: 768px) {
     .gallery-track img {
         height: 200px;
@@ -2647,24 +2529,19 @@ textarea:focus::placeholder {
         padding: var(--spacing-1) var(--spacing-3);
     }
 }
-/* --- Full Width Hero Section Updates --- */
-
 .hero-section {
     display: flex;
     align-items: center;
-    justify-content: center; /* Centers the content horizontally */
+    justify-content: center;
     padding: var(--spacing-20) 5%;
     min-height: 50vh;
     position: relative;
     overflow: hidden;
-    margin: 20px 0; /* Removed side margins to allow full width */
-    
-    /* Unified background instead of the split 50/50 look */
+    margin: 20px 0;
     background: linear-gradient(135deg, rgba(37, 99, 235, 0.02) 0%, rgba(14, 165, 233, 0.06) 100%);
-    border-radius: var(--radius-2xl); /* Optional: rounds the edges of the whole section */
+    border-radius: var(--radius-2xl);
 }
 
-/* Remove the old 50% split background */
 .hero-section::before {
     display: none; 
 }
@@ -2673,34 +2550,32 @@ textarea:focus::placeholder {
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centers the text and buttons */
-    text-align: center; /* Centers the text alignment */
+    align-items: center;
+    text-align: center;
     gap: var(--spacing-6);
-    max-width: 1000px; /* Expanded from 600px to cover more width, but keeps text readable */
+    max-width: 1000px;
     margin: 0 auto;
     position: relative;
     z-index: 1;
 }
 
-/* Adjust the blue underline to animate from the center out */
 .hero-title::after {
     content: '';
     position: absolute;
     bottom: -10px;
-    left: 50%; /* Move to center */
+    left: 50%;
     width: 100%;
     height: 3px;
     background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
-    transform: translateX(-50%) scaleX(0); /* Center transform */
+    transform: translateX(-50%) scaleX(0);
     transform-origin: center;
     transition: transform 0.8s var(--ease-out) 0.5s;
 }
 
 .hero-title.animate::after {
-    transform: translateX(-50%) scaleX(1); /* Expand from center */
+    transform: translateX(-50%) scaleX(1);
 }
 
-/* Ensure the buttons stay centered next to each other */
 .hero-cta {
     display: flex;
     justify-content: center;
@@ -2708,9 +2583,6 @@ textarea:focus::placeholder {
     margin-top: var(--spacing-6);
     width: 100%;
 }
-/* ============================================================
-   HERO — bold, light-theme signature moment, scoped to IDs
-   ============================================================ */
 #home.full-width-hero {
   position: relative;
   display: flex;
@@ -2901,38 +2773,32 @@ textarea:focus::placeholder {
 @media (prefers-reduced-motion: reduce) {
   #hero-glow, #hero-network .hn-node, #hero-network .hn-packet { animation: none !important; }
 }
-/* Forces the 3 lists to sit side-by-side in equal columns */
 .recruit-details-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* This line forces the 3 columns */
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--spacing-8);
     margin-bottom: var(--spacing-10);
     align-items: start;
 }
 
-/* Centers the deadline and the apply button */
 .recruit-footer {
     display: flex;
-    flex-direction: column; /* Stacks the items vertically */
+    flex-direction: column; 
     justify-content: center;
-    align-items: center; /* Centers them perfectly */
+    align-items: center; 
     background: var(--bg-tertiary);
     padding: var(--spacing-6) var(--spacing-8);
     border-radius: var(--radius-xl);
-    gap: var(--spacing-4); /* Adds breathing room between the text and button */
+    gap: var(--spacing-4);
     text-align: center;
 }
 
-/* Mobile responsiveness: stack columns neatly on smaller screens */
 @media (max-width: 850px) {
     .recruit-details-grid {
         grid-template-columns: 1fr;
         gap: var(--spacing-6);
     }
 }
-/* ============================================================
-   ABOUT — manifesto panel + focus-area grid
-   ============================================================ */
 .about-section {
   background: var(--paper, #faf8f3);
   padding: var(--spacing-24) 6%;
@@ -2947,7 +2813,6 @@ textarea:focus::placeholder {
   align-items: stretch;
 }
 
-/* ---- Objective: manifesto card ---- */
 #about-objective {
   position: relative;
   background: linear-gradient(160deg, #1b2f6b 0%, #11214f 100%);
@@ -3013,7 +2878,6 @@ textarea:focus::placeholder {
   color: rgba(255,255,255,0.6);
 }
 
-/* ---- Focus areas: icon-card grid ---- */
 #about-focus {
   display: flex;
   flex-direction: column;
@@ -3081,9 +2945,6 @@ textarea:focus::placeholder {
   #about-grid { grid-template-columns: 1fr; }
   #about-objective { padding: var(--spacing-10) var(--spacing-7); }
 }
-/* ============================================================
-   RESEARCH — node-grid cards
-   ============================================================ */
 #research.research-section {
   background: var(--paper, #faf8f3);
   padding: var(--spacing-24) 6%;
@@ -3187,9 +3048,6 @@ textarea:focus::placeholder {
 @media (max-width: 900px) {
   #research-grid { grid-template-columns: 1fr; }
 }
-/* ============================================================
-   RECRUITMENT — "ticket" layout
-   ============================================================ */
 .recruitment-section {
   background: var(--paper, #faf8f3);
   padding: var(--spacing-20) 6% var(--spacing-24);
@@ -3312,7 +3170,6 @@ textarea:focus::placeholder {
   background: #f2a900;
 }
 
-/* ---- ticket-stub divider ---- */
 #recruit-stub {
   position: relative;
   width: 1px;
@@ -3333,7 +3190,6 @@ textarea:focus::placeholder {
 #recruit-stub::before { top: -10px; }
 #recruit-stub::after { bottom: -10px; }
 
-/* ---- action panel ---- */
 #recruit-action {
   display: flex;
   flex-direction: column;
@@ -3403,9 +3259,6 @@ textarea:focus::placeholder {
   #recruit-action { border-radius: 0 0 var(--radius-3xl) var(--radius-3xl); align-items: flex-start; }
   #recruit-cols { grid-template-columns: 1fr; gap: var(--spacing-5); }
 }
-/* ============================================================
-   CONTACT — rotating-accent info cards + styled map card
-   ============================================================ */
 #contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1.2fr;
@@ -3508,10 +3361,6 @@ textarea:focus::placeholder {
 @media (max-width: 900px) {
   #contact-grid { grid-template-columns: 1fr; }
 }
-
-/* ============================================================
-   FAQ — accordion with accent state
-   ============================================================ */
 #faq .faq-container {
   max-width: 820px;
   margin: 0 auto;
@@ -3661,11 +3510,6 @@ textarea:focus::placeholder {
     .news-ticker-label { font-size: 0.8rem; padding: 0.5rem 1rem; }
     .news-ticker-scroll p { font-size: 0.95rem; }
 }
-/* ========================================
-   HEADER COMPONENT STYLES
-   ======================================== */
-
-/* Skip Link Styling */
 .skip-link {
   position: absolute;
   top: -40px;
@@ -3684,7 +3528,6 @@ textarea:focus::placeholder {
   top: 6px;
 }
 
-/* Header Main Styles */
 .header {
   display: flex;
   justify-content: space-between;
@@ -3708,7 +3551,6 @@ textarea:focus::placeholder {
   transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Logo Container */
 .logo-container {
   display: flex;
   align-items: center;
@@ -3747,7 +3589,6 @@ textarea:focus::placeholder {
   transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);
 }
 
-/* Navigation */
 .navigation ul {
   display: flex;
   list-style: none;
@@ -3784,9 +3625,6 @@ textarea:focus::placeholder {
   color: var(--accent-primary, #007bff);
 }
 
-/* Removed problematic hover overlay effect that was causing grey overlay */
-
-/* Active Navigation State */
 .nav-link.active {
   color: var(--accent-primary, #007bff);
 }
@@ -3795,11 +3633,6 @@ textarea:focus::placeholder {
   width: 100%;
 }
 
-/* ========================================
-   RESPONSIVE DESIGN
-   ======================================== */
-
-/* Mobile devices */
 @media (max-width: 480px) {
   .header {
     padding: 0.75rem 1rem;
@@ -3822,7 +3655,6 @@ textarea:focus::placeholder {
   }
 }
 
-/* Tablet devices */
 @media (min-width: 481px) and (max-width: 768px) {
   .header {
     padding: 0.875rem 1.5rem;
@@ -3833,17 +3665,15 @@ textarea:focus::placeholder {
   }
 }
 
-/* Mobile navigation - hide on very small screens */
 @media (max-width: 576px) {
   .navigation ul {
-    display: none; /* You might want to implement a hamburger menu here */
+    display: none; 
   }
 }
 
-/* Touch device optimizations */
 @media (hover: none) and (pointer: coarse) {
   .nav-link {
-    min-height: 44px; /* iOS touch target size */
+    min-height: 44px; 
     min-width: 44px;
     display: flex;
     align-items: center;
@@ -3855,7 +3685,6 @@ textarea:focus::placeholder {
   }
 }
 
-/* High-density displays */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .logo {
     image-rendering: -webkit-optimize-contrast;
@@ -3863,7 +3692,6 @@ textarea:focus::placeholder {
   }
 }
 
-/* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   .header,
   .logo,
@@ -3873,9 +3701,6 @@ textarea:focus::placeholder {
     transition-duration: 0.01ms !important;
   }
 }
-/* ========================================
-   MOBILE HAMBURGER MENU (additive)
-   ======================================== */
 
 .nav-toggle {
   display: none;
@@ -3954,7 +3779,7 @@ textarea:focus::placeholder {
   }
 
   .navigation ul {
-    display: flex !important; /* overrides the existing display:none at 576px */
+    display: flex !important;
     flex-direction: column;
     gap: 0;
     padding: 0 1.75rem;
@@ -3978,14 +3803,10 @@ textarea:focus::placeholder {
     transition-duration: 0.01ms !important;
   }
 }
-/* ========================================
-   CUSTOM CURSOR (additive, safe fallback)
-   ======================================== */
 
 :root {
-  /* Edit these two values to restyle the entire custom cursor */
-  --cursor-color: #a020f0;   /* bright purple */
-  --cursor-dot-size: 18px;   /* center dot diameter */
+  --cursor-color: #a020f0;
+  --cursor-dot-size: 18px;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -4066,9 +3887,6 @@ textarea:focus::placeholder {
     cursor: auto !important;
   }
 }
-/* ============================================================
-   HERO — reduce the gap below the ticker
-   ============================================================ */
 #home.full-width-hero {
   min-height: 60vh;
   padding-top: 2.5rem;

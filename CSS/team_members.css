@@ -1,20 +1,18 @@
 :root {
-  /* ---- Light theme — matches the rest of the MIDC Lab site ---- */
-  --bg-primary: #faf8f3;       /* paper */
-  --bg-secondary: #ffffff;     /* surface */
-  --text-primary: #11182b;     /* ink */
-  --text-secondary: #525b72;   /* ink-soft */
-  --text-muted: #8a92a6;       /* ink-faint */
-  --border-color: #e6e2d6;     /* line */
+  --bg-primary: #faf8f3;       
+  --bg-secondary: #ffffff;
+  --text-primary: #11182b;   
+  --text-secondary: #525b72;  
+  --text-muted: #8a92a6;      
+  --border-color: #e6e2d6;     
 
-  --accent-primary: #1b2f6b;   /* signal navy */
-  --accent-color: var(--accent-primary); /* backward compatibility */
+  --accent-primary: #1b2f6b;   
+  --accent-color: var(--accent-primary);
   --accent-hover: #142450;
   --accent-amber: #f2a900;
   --accent-amber-dark: #c98300;
   --accent-teal: #0e7c7b;
 
-  /* Dark Mode Colors (left as-is for users who toggle dark mode) */
   --dark-bg-primary: #121212;
   --dark-bg-secondary: #1e1e1e;
   --dark-text-primary: #e0e0e0;
@@ -53,11 +51,6 @@ body.dark-mode {
   color: var(--dark-text-primary);
 }
 
-/* Header styles handled by header component */
-
-/* ----------------------------------------------------------------------
-   Toggle Switch (kept as-is for compatibility with header/theme script)
-   ---------------------------------------------------------------------- */
 .theme-toggle {
   position: relative;
   width: 100px;
@@ -112,9 +105,6 @@ body.dark-mode {
   box-shadow: none;
 }
 
-/* ----------------------------------------------------------------------
-   Page container
-   ---------------------------------------------------------------------- */
 #about-container {
   padding: var(--spacing-20, 5rem) 6% var(--spacing-24, 6rem);
   background-color: var(--bg-primary);
@@ -122,7 +112,6 @@ body.dark-mode {
   background-size: 36px 36px;
 }
 
-/* Eyebrow label + pulse dot (used above the page title) */
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -183,7 +172,6 @@ body.dark-mode {
 
 #about-container > .section-title { margin-bottom: 4rem; }
 
-/* Category labels: Faculty / Members / PhD Candidates / Interns */
 .section-subtitle {
   display: flex;
   align-items: center;
@@ -216,9 +204,6 @@ body.dark-mode {
   background: var(--border-color);
 }
 
-/* ----------------------------------------------------------------------
-   Team Container + Cards
-   ---------------------------------------------------------------------- */
 .team-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -317,7 +302,6 @@ body.dark-mode {
   border-bottom: none;
 }
 
-/* Role badges tinted by section, in document order — no extra HTML needed */
 #about-container > .team-container:nth-of-type(2) .member-role {
   color: var(--accent-primary);
   background: rgba(27,47,107,0.08);
@@ -363,9 +347,6 @@ body.dark-mode {
   color: var(--text-primary);
 }
 
-/* ============================================ */
-/* FACULTY DIRECTOR SPOTLIGHT (#AH) — refined   */
-/* ============================================ */
 
 #AH.team-container {
   display: block;
@@ -482,10 +463,6 @@ body.dark-mode {
   #AH .member-contribution ul { justify-content: center; }
   #AH .member-bio { text-align: left; }
 }
-
-/* ----------------------------------------------------------------------
-   Footer
-   ---------------------------------------------------------------------- */
 .footer {
   background-color: var(--text-primary);
   color: white;
@@ -590,9 +567,6 @@ body.dark-mode {
   color: var(--dark-text-secondary);
 }
 
-/* ----------------------------------------------------------------------
-   Back Button
-   ---------------------------------------------------------------------- */
 .btn-container {
   text-align: center;
   margin-top: 40px;
@@ -622,9 +596,6 @@ body.dark-mode {
   transform: translateY(1px);
 }
 
-/* ----------------------------------------------------------------------
-   Dark Mode overrides (unchanged behaviour, repointed to new tokens)
-   ---------------------------------------------------------------------- */
 .dark-mode #about-container {
   background-color: var(--dark-bg-secondary);
   background-image: none;
@@ -677,10 +648,6 @@ body.dark-mode {
 .dark-mode .back-btn {
   background: linear-gradient(135deg, var(--dark-accent-color), var(--dark-accent-hover));
 }
-
-/* ----------------------------------------------------------------------
-   Responsive Design (deduplicated)
-   ---------------------------------------------------------------------- */
 @media (max-width: 992px) {
   #about-container {
     padding: 2.5rem 5%;
@@ -736,9 +703,6 @@ body.dark-mode {
     transform: translateX(-50%);
   }
 }
-/* ----------------------------------------------------------------------
-   LinkedIn button — pinned to the card itself, not a floating sibling
-   ---------------------------------------------------------------------- */
 .member-linkedin {
   position: absolute;
   top: 1rem;
@@ -777,9 +741,6 @@ body.dark-mode {
   right: 2.5rem;
 }
 
-/* ----------------------------------------------------------------------
-   Director name/role badges — fit their own text, not the grid column
-   ---------------------------------------------------------------------- */
 #AH .member-name {
   display: inline-block;
   width: fit-content;
@@ -805,9 +766,6 @@ body.dark-mode {
   color: #ffffff;
 }
 
-/* ----------------------------------------------------------------------
-   Bigger, more legible type across all cards
-   ---------------------------------------------------------------------- */
 .member-name {
   font-size: 1.4rem;
 }
@@ -825,11 +783,7 @@ body.dark-mode {
 #AH .member-bio p {
   font-size: 1.05rem;
 }
-/* ========================================
-   HEADER COMPONENT STYLES
-   ======================================== */
 
-/* Skip Link Styling */
 .skip-link {
   position: absolute;
   top: -40px;
@@ -848,7 +802,6 @@ body.dark-mode {
   top: 6px;
 }
 
-/* Header Main Styles */
 .header {
   display: flex;
   justify-content: space-between;
@@ -872,7 +825,6 @@ body.dark-mode {
   transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Logo Container */
 .logo-container {
   display: flex;
   align-items: center;
@@ -911,7 +863,6 @@ body.dark-mode {
   transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);
 }
 
-/* Navigation */
 .navigation ul {
   display: flex;
   list-style: none;
@@ -948,9 +899,6 @@ body.dark-mode {
   color: var(--accent-primary, #007bff);
 }
 
-/* Removed problematic hover overlay effect that was causing grey overlay */
-
-/* Active Navigation State */
 .nav-link.active {
   color: var(--accent-primary, #007bff);
 }
@@ -959,11 +907,6 @@ body.dark-mode {
   width: 100%;
 }
 
-/* ========================================
-   RESPONSIVE DESIGN
-   ======================================== */
-
-/* Mobile devices */
 @media (max-width: 480px) {
   .header {
     padding: 0.75rem 1rem;
@@ -986,7 +929,6 @@ body.dark-mode {
   }
 }
 
-/* Tablet devices */
 @media (min-width: 481px) and (max-width: 768px) {
   .header {
     padding: 0.875rem 1.5rem;
@@ -997,17 +939,15 @@ body.dark-mode {
   }
 }
 
-/* Mobile navigation - hide on very small screens */
 @media (max-width: 576px) {
   .navigation ul {
-    display: none; /* You might want to implement a hamburger menu here */
+    display: none;
   }
 }
 
-/* Touch device optimizations */
 @media (hover: none) and (pointer: coarse) {
   .nav-link {
-    min-height: 44px; /* iOS touch target size */
+    min-height: 44px;
     min-width: 44px;
     display: flex;
     align-items: center;
@@ -1019,7 +959,6 @@ body.dark-mode {
   }
 }
 
-/* High-density displays */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .logo {
     image-rendering: -webkit-optimize-contrast;
@@ -1027,7 +966,6 @@ body.dark-mode {
   }
 }
 
-/* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   .header,
   .logo,
@@ -1037,9 +975,6 @@ body.dark-mode {
     transition-duration: 0.01ms !important;
   }
 }
-/* ========================================
-   MOBILE HAMBURGER MENU (additive)
-   ======================================== */
 
 .nav-toggle {
   display: none;
@@ -1118,7 +1053,7 @@ body.dark-mode {
   }
 
   .navigation ul {
-    display: flex !important; /* overrides the existing display:none at 576px */
+    display: flex !important;
     flex-direction: column;
     gap: 0;
     padding: 0 1.75rem;
@@ -1142,9 +1077,6 @@ body.dark-mode {
     transition-duration: 0.01ms !important;
   }
 }
-/* ----------------------------------------------------------------------
-   Director social row: Info / Scholar / LinkedIn
-   ---------------------------------------------------------------------- */
 #AH .member-socials {
   position: absolute;
   top: 2.5rem;
@@ -1153,8 +1085,6 @@ body.dark-mode {
   gap: 0.6rem;
 }
 
-/* Override the single-icon absolute positioning since these now sit
-   inside a flex row instead of being individually pinned */
 #AH .member-socials .member-social {
   position: relative;
   top: auto;
@@ -1177,7 +1107,6 @@ body.dark-mode {
   transform: translateY(-3px);
 }
 
-/* Info button — neutral grey/navy */
 .member-info {
   background: rgba(27, 47, 107, 0.08);
   color: var(--accent-primary);
@@ -1187,7 +1116,6 @@ body.dark-mode {
   color: #ffffff;
 }
 
-/* Google Scholar button — uses Scholar's own blue */
 .member-scholar {
   background: rgba(66, 133, 244, 0.1);
   color: #4285f4;
@@ -1197,7 +1125,6 @@ body.dark-mode {
   color: #ffffff;
 }
 
-/* LinkedIn — keep its brand blue, just remove the old solo positioning */
 .member-linkedin {
   background: rgba(27,47,107,0.08);
   color: var(--accent-primary);

@@ -1,20 +1,18 @@
 :root {
-  /* ---- Light theme — matches the rest of the MIDC Lab site ---- */
-  --bg-primary: #faf8f3;       /* paper */
-  --bg-secondary: #ffffff;     /* surface */
-  --text-primary: #11182b;     /* ink */
-  --text-secondary: #525b72;   /* ink-soft */
-  --text-muted: #8a92a6;       /* ink-faint */
-  --border-color: #e6e2d6;     /* line */
+  --bg-primary: #faf8f3;       
+  --bg-secondary: #ffffff;     
+  --text-primary: #11182b;     
+  --text-secondary: #525b72;  
+  --text-muted: #8a92a6;    
+  --border-color: #e6e2d6;
 
-  --accent-primary: #1b2f6b;   /* signal navy */
-  --accent-color: var(--accent-primary); /* backward compatibility */
+  --accent-primary: #1b2f6b;
+  --accent-color: var(--accent-primary);
   --accent-hover: #142450;
   --accent-amber: #f2a900;
   --accent-amber-dark: #c98300;
   --accent-teal: #0e7c7b;
 
-  /* Dark Mode Colors (unchanged for users who toggle dark mode) */
   --dark-bg-primary: #121212;
   --dark-bg-secondary: #1e1e1e;
   --dark-text-primary: #e0e0e0;
@@ -52,7 +50,6 @@ body.dark-mode {
   color: var(--dark-text-primary);
 }
 
-/* Skip Link Styling */
 .skip-link {
   position: absolute;
   top: -40px;
@@ -68,9 +65,6 @@ body.dark-mode {
 }
 .skip-link:focus { top: 6px; }
 
-/* ----------------------------------------------------------------------
-   Header (kept for pages that don't load the shared header component)
-   ---------------------------------------------------------------------- */
 .header {
   display: flex;
   justify-content: space-between;
@@ -143,9 +137,6 @@ body.dark-mode {
 .dark-mode .nav-link { color: var(--dark-text-secondary); }
 .dark-mode .nav-link:hover { color: var(--dark-accent-color); }
 
-/* ----------------------------------------------------------------------
-   Publications Section
-   ---------------------------------------------------------------------- */
 .publications-section {
   padding: 4.5rem 5% 5rem;
   background-color: var(--bg-secondary);
@@ -345,9 +336,6 @@ body.dark-mode {
   .pub-year { width: auto; height: auto; padding: 4px 14px; flex-direction: row; }
 }
 
-/* ----------------------------------------------------------------------
-   Toggle Switch
-   ---------------------------------------------------------------------- */
 .theme-toggle { position: relative; width: 100px; height: 50px; }
 
 .theme-switch-label {
@@ -391,9 +379,6 @@ body.dark-mode {
   box-shadow: none;
 }
 
-/* ----------------------------------------------------------------------
-   Footer
-   ---------------------------------------------------------------------- */
 .footer {
   background-color: var(--text-primary);
   color: white;
@@ -469,9 +454,6 @@ body.dark-mode {
 
 .university-affiliation { margin-top: 0.5rem; font-size: 0.9rem; color: var(--dark-text-secondary); }
 
-/* ----------------------------------------------------------------------
-   Responsive Design
-   ---------------------------------------------------------------------- */
 @media screen and (max-width: 768px) {
   .header, .hero-section, .about-content, .project-slider {
     flex-direction: column;
@@ -490,11 +472,6 @@ body.dark-mode {
   .footer-col { text-align: center; }
   .footer-col h4::after { left: 50%; transform: translateX(-50%); }
 }
-/* ========================================
-   HEADER COMPONENT STYLES
-   ======================================== */
-
-/* Skip Link Styling */
 .skip-link {
   position: absolute;
   top: -40px;
@@ -513,7 +490,6 @@ body.dark-mode {
   top: 6px;
 }
 
-/* Header Main Styles */
 .header {
   display: flex;
   justify-content: space-between;
@@ -537,7 +513,6 @@ body.dark-mode {
   transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Logo Container */
 .logo-container {
   display: flex;
   align-items: center;
@@ -576,7 +551,6 @@ body.dark-mode {
   transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);
 }
 
-/* Navigation */
 .navigation ul {
   display: flex;
   list-style: none;
@@ -613,9 +587,6 @@ body.dark-mode {
   color: var(--accent-primary, #007bff);
 }
 
-/* Removed problematic hover overlay effect that was causing grey overlay */
-
-/* Active Navigation State */
 .nav-link.active {
   color: var(--accent-primary, #007bff);
 }
@@ -624,11 +595,6 @@ body.dark-mode {
   width: 100%;
 }
 
-/* ========================================
-   RESPONSIVE DESIGN
-   ======================================== */
-
-/* Mobile devices */
 @media (max-width: 480px) {
   .header {
     padding: 0.75rem 1rem;
@@ -651,7 +617,6 @@ body.dark-mode {
   }
 }
 
-/* Tablet devices */
 @media (min-width: 481px) and (max-width: 768px) {
   .header {
     padding: 0.875rem 1.5rem;
@@ -662,17 +627,15 @@ body.dark-mode {
   }
 }
 
-/* Mobile navigation - hide on very small screens */
 @media (max-width: 576px) {
   .navigation ul {
-    display: none; /* You might want to implement a hamburger menu here */
+    display: none;
   }
 }
 
-/* Touch device optimizations */
 @media (hover: none) and (pointer: coarse) {
   .nav-link {
-    min-height: 44px; /* iOS touch target size */
+    min-height: 44px;
     min-width: 44px;
     display: flex;
     align-items: center;
@@ -684,7 +647,6 @@ body.dark-mode {
   }
 }
 
-/* High-density displays */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .logo {
     image-rendering: -webkit-optimize-contrast;
@@ -692,7 +654,6 @@ body.dark-mode {
   }
 }
 
-/* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   .header,
   .logo,
@@ -702,14 +663,10 @@ body.dark-mode {
     transition-duration: 0.01ms !important;
   }
 }
-/* ========================================
-   CUSTOM CURSOR (additive, safe fallback)
-   ======================================== */
 
 :root {
-  /* Edit these two values to restyle the entire custom cursor */
-  --cursor-color: #a020f0;   /* bright purple */
-  --cursor-dot-size: 18px;   /* center dot diameter */
+  --cursor-color: #a020f0; 
+  --cursor-dot-size: 18px; 
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -790,9 +747,6 @@ body.dark-mode {
     cursor: auto !important;
   }
 }
-/* ----------------------------------------------------------------------
-   Publications Section — matched to the Projects page card system
-   ---------------------------------------------------------------------- */
 .publications-section {
   padding: 4.5rem 5% 5rem;
   background-color: var(--bg-primary);

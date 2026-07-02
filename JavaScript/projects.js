@@ -1,17 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Project filtering functionality
   const filterButtons = document.querySelectorAll(".filter-btn");
   const projectCards = document.querySelectorAll(".project-card");
 
   filterButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      // Update active button
       filterButtons.forEach((btn) => btn.classList.remove("active"));
       button.classList.add("active");
 
       const filterValue = button.getAttribute("data-filter");
 
-      // Filter projects
       projectCards.forEach((card) => {
         if (filterValue === "all") {
           card.style.display = "block";
@@ -26,32 +23,25 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Tab functionality for each project card
   const tabButtons = document.querySelectorAll(".tab-btn");
 
   tabButtons.forEach((button) => {
     button.addEventListener("click", function () {
-      // Get the parent project card
       const projectContent = this.closest(".project-content");
 
-      // Remove active class from all tab buttons in this card
       const tabsInThisCard = projectContent.querySelectorAll(".tab-btn");
       tabsInThisCard.forEach((tab) => tab.classList.remove("active"));
 
-      // Add active class to clicked button
       this.classList.add("active");
 
-      // Get the tab content id
       const tabId = this.getAttribute("data-tab");
 
-      // Hide all tab contents in this card
       const tabContentsInThisCard =
         projectContent.querySelectorAll(".tab-content");
       tabContentsInThisCard.forEach((content) =>
         content.classList.remove("active")
       );
 
-      // Show the selected tab content
       const activeContent = document.getElementById(tabId);
       if (activeContent) {
         activeContent.classList.add("active");
@@ -61,11 +51,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Dark Mode Toggle
   const themeSwitch = document.getElementById("theme-switch");
   const body = document.body;
 
-  // Check user's previous theme preference
   const currentTheme = localStorage.getItem("theme");
   if (currentTheme) {
     body.classList.add(currentTheme);
@@ -81,22 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.removeItem("theme");
     }
   });
-
-  // // Smooth Scrolling
-  // const navLinks = document.querySelectorAll(".nav-link");
-  // navLinks.forEach((link) => {
-  //   link.addEventListener("click", (e) => {
-  //     e.preventDefault();
-  //     const targetId = link.getAttribute("href");
-  //     const targetSection = document.querySelector(targetId);
-
-  //     targetSection.scrollIntoView({
-  //       behavior: "smooth",
-  //     });
-  //   });
-  // });
-
-  // Scroll Reveal Animations
   const revealElements = document.querySelectorAll(
     ".hero-section, .about-section, .project-highlights"
   );
@@ -116,11 +88,8 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   window.addEventListener("scroll", revealOnScroll);
-  revealOnScroll(); // Initial check
+  revealOnScroll();
 });
-/* ========================================
-   HEADER COMPONENT JAVASCRIPT
-   ======================================== */
 
 'use strict';
 
@@ -151,9 +120,6 @@ const HeaderUtils = {
     }
 };
 
-// ============================================
-//           SMART HEADER SYSTEM
-// ============================================
 
 class SmartHeader {
     constructor() {
@@ -236,20 +202,14 @@ class SmartHeader {
             if (!this.isMobile && this.isHidden) {
                 this.showHeader();
             }
-            // Closing the mobile menu automatically when resizing back to desktop
             if (wasMobile && !this.isMobile && this.isMenuOpen) {
                 this.closeMobileMenu();
             }
         }, 250));
     }
-
-    // --------------------------------------------
-    // Mobile hamburger menu
-    // --------------------------------------------
     setupMobileMenu() {
         if (!this.navToggle || !this.navigation) return;
 
-        // Create a single backdrop element, reused across the session
         this.navBackdrop = document.createElement('div');
         this.navBackdrop.className = 'nav-backdrop';
         document.body.appendChild(this.navBackdrop);
@@ -260,12 +220,10 @@ class SmartHeader {
 
         this.navBackdrop.addEventListener('click', () => this.closeMobileMenu());
 
-        // Close on Escape
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && this.isMenuOpen) this.closeMobileMenu();
         });
 
-        // Close whenever a nav link is tapped
         this.navigation.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => this.closeMobileMenu());
         });
@@ -353,23 +311,12 @@ class SmartHeader {
     }
 }
 
-// ============================================
-//              HEADER LOADER
-// ============================================
-
 class HeaderLoader {
     constructor() {
         this.componentPath = './components/header.html';
         this.cssPath = './components/header.css';
         this.pathConfig = {};
     }
-
-    /**
-     * Determines whether the current page lives inside the /HTML/ subfolder.
-     * Uses a case-insensitive check since GitHub Pages is served from a
-     * case-sensitive filesystem and a mismatched check here is the #1 cause
-     * of the header silently failing to load on GitHub but working locally.
-     */
     configurePaths() {
         const currentPath = window.location.pathname.toLowerCase();
         const isInSubfolder = currentPath.includes('/html/');
@@ -414,8 +361,6 @@ class HeaderLoader {
 
             let headerHTML = await response.text();
 
-            // Replace every {{PLACEHOLDER}} found in pathConfig — order-independent,
-            // so adding/removing keys never silently breaks a stale .replace() chain.
             Object.entries(this.pathConfig).forEach(([key, value]) => {
                 headerHTML = headerHTML.split(`{{${key}}}`).join(value);
             });
@@ -432,9 +377,6 @@ class HeaderLoader {
 
             return true;
         } catch (error) {
-            // Visible failure instead of a silently blank header — makes
-            // GitHub Pages path issues obvious in DevTools instead of just
-            // "the header isn't there and I don't know why."
             console.error('[MIDC Header] Failed to load header component:', error);
             return false;
         }
@@ -458,10 +400,6 @@ class HeaderLoader {
     }
 }
 
-// ============================================
-//              INITIALIZATION
-// ============================================
-
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         const headerLoader = new HeaderLoader();
@@ -475,9 +413,6 @@ if (document.readyState === 'loading') {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { SmartHeader, HeaderLoader };
 }
-// ============================================
-//   MOBILE HAMBURGER MENU (additive, standalone)
-// ============================================
 (function () {
     'use strict';
 
@@ -529,10 +464,6 @@ if (typeof module !== 'undefined' && module.exports) {
 
         return true;
     }
-
-    // The header HTML loads asynchronously (via fetch in HeaderLoader),
-    // so .nav-toggle won't exist yet on DOMContentLoaded. Watch for it
-    // instead of guessing a timeout.
     if (!initMobileMenu()) {
         const observer = new MutationObserver(() => {
             if (initMobileMenu()) {
@@ -542,9 +473,6 @@ if (typeof module !== 'undefined' && module.exports) {
         observer.observe(document.body, { childList: true, subtree: true });
     }
 })();
-// ============================================
-//   CUSTOM CURSOR (additive, safe fallback)
-// ============================================
 (function () {
     'use strict';
 
@@ -575,8 +503,6 @@ if (typeof module !== 'undefined' && module.exports) {
             dot.style.left = mouseX + 'px';
             dot.style.top = mouseY + 'px';
 
-            // Only hide the native cursor once we have a real pointer
-            // position to replace it with.
             if (!hasMoved) {
                 hasMoved = true;
                 document.body.classList.add('custom-cursor-ready');
@@ -617,9 +543,6 @@ if (typeof module !== 'undefined' && module.exports) {
             ring.style.opacity = '1';
         });
     } catch (err) {
-        // If anything above fails, the native cursor was never hidden
-        // (CSS only hides it via .custom-cursor-ready), so the page
-        // remains fully usable.
         console.error('[Custom Cursor] Failed to initialize:', err);
     }
 })();

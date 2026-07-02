@@ -1,14 +1,11 @@
 'use strict';
 
-/* -------------------------------------------------
-   1. FAQ – only the code that the page actually uses
-   ------------------------------------------------- */
 document.querySelectorAll('.faq-item').forEach((item, idx) => {
   const q   = item.querySelector('.faq-question');
   const a   = item.querySelector('.faq-answer');
   const ico = item.querySelector('.toggle-icon');
 
-  if (!q || !a || !ico) return;               // safety
+  if (!q || !a || !ico) return; 
 
   const toggle = () => {
     const open = item.classList.toggle('active');
@@ -19,15 +16,11 @@ document.querySelectorAll('.faq-item').forEach((item, idx) => {
   q.addEventListener('click', toggle);
   ico.addEventListener('click', e => { e.stopPropagation(); toggle(); });
 
-  // ARIA
   q.setAttribute('aria-expanded', 'false');
   q.setAttribute('aria-controls', `faq-${idx}`);
   a.setAttribute('id', `faq-${idx}`);
 });
 
-/* -------------------------------------------------
-   2. Smooth scroll for internal #links (used by nav)
-   ------------------------------------------------- */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     const target = document.querySelector(a.getAttribute('href'));
@@ -40,9 +33,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-/* -------------------------------------------------
-   3. Simple “skip to main” link (accessibility)
-   ------------------------------------------------- */
 if (!document.querySelector('.skip-link')) {
   const skip = document.createElement('a');
   skip.href = '#main';
@@ -51,13 +41,7 @@ if (!document.querySelector('.skip-link')) {
   document.body.insertBefore(skip, document.body.firstChild);
 }
 
-/* -------------------------------------------------
-   4. Remove FOUC (flash of unstyled content)
-   ------------------------------------------------- */
 document.documentElement.classList.remove('preload');
-/* ========================================
-   HEADER COMPONENT JAVASCRIPT
-   ======================================== */
 
 'use strict';
 
@@ -88,9 +72,6 @@ const HeaderUtils = {
     }
 };
 
-// ============================================
-//           SMART HEADER SYSTEM
-// ============================================
 
 class SmartHeader {
     constructor() {
@@ -173,20 +154,14 @@ class SmartHeader {
             if (!this.isMobile && this.isHidden) {
                 this.showHeader();
             }
-            // Closing the mobile menu automatically when resizing back to desktop
             if (wasMobile && !this.isMobile && this.isMenuOpen) {
                 this.closeMobileMenu();
             }
         }, 250));
     }
-
-    // --------------------------------------------
-    // Mobile hamburger menu
-    // --------------------------------------------
     setupMobileMenu() {
         if (!this.navToggle || !this.navigation) return;
 
-        // Create a single backdrop element, reused across the session
         this.navBackdrop = document.createElement('div');
         this.navBackdrop.className = 'nav-backdrop';
         document.body.appendChild(this.navBackdrop);
@@ -197,12 +172,10 @@ class SmartHeader {
 
         this.navBackdrop.addEventListener('click', () => this.closeMobileMenu());
 
-        // Close on Escape
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && this.isMenuOpen) this.closeMobileMenu();
         });
 
-        // Close whenever a nav link is tapped
         this.navigation.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => this.closeMobileMenu());
         });
@@ -290,10 +263,6 @@ class SmartHeader {
     }
 }
 
-// ============================================
-//              HEADER LOADER
-// ============================================
-
 class HeaderLoader {
     constructor() {
         this.componentPath = './components/header.html';
@@ -301,12 +270,6 @@ class HeaderLoader {
         this.pathConfig = {};
     }
 
-    /**
-     * Determines whether the current page lives inside the /HTML/ subfolder.
-     * Uses a case-insensitive check since GitHub Pages is served from a
-     * case-sensitive filesystem and a mismatched check here is the #1 cause
-     * of the header silently failing to load on GitHub but working locally.
-     */
     configurePaths() {
         const currentPath = window.location.pathname.toLowerCase();
         const isInSubfolder = currentPath.includes('/html/');
@@ -351,8 +314,6 @@ class HeaderLoader {
 
             let headerHTML = await response.text();
 
-            // Replace every {{PLACEHOLDER}} found in pathConfig — order-independent,
-            // so adding/removing keys never silently breaks a stale .replace() chain.
             Object.entries(this.pathConfig).forEach(([key, value]) => {
                 headerHTML = headerHTML.split(`{{${key}}}`).join(value);
             });
@@ -369,9 +330,6 @@ class HeaderLoader {
 
             return true;
         } catch (error) {
-            // Visible failure instead of a silently blank header — makes
-            // GitHub Pages path issues obvious in DevTools instead of just
-            // "the header isn't there and I don't know why."
             console.error('[MIDC Header] Failed to load header component:', error);
             return false;
         }
@@ -395,10 +353,6 @@ class HeaderLoader {
     }
 }
 
-// ============================================
-//              INITIALIZATION
-// ============================================
-
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         const headerLoader = new HeaderLoader();
@@ -412,9 +366,6 @@ if (document.readyState === 'loading') {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { SmartHeader, HeaderLoader };
 }
-// ============================================
-//   MOBILE HAMBURGER MENU (additive, standalone)
-// ============================================
 (function () {
     'use strict';
 
@@ -466,10 +417,6 @@ if (typeof module !== 'undefined' && module.exports) {
 
         return true;
     }
-
-    // The header HTML loads asynchronously (via fetch in HeaderLoader),
-    // so .nav-toggle won't exist yet on DOMContentLoaded. Watch for it
-    // instead of guessing a timeout.
     if (!initMobileMenu()) {
         const observer = new MutationObserver(() => {
             if (initMobileMenu()) {
@@ -479,9 +426,6 @@ if (typeof module !== 'undefined' && module.exports) {
         observer.observe(document.body, { childList: true, subtree: true });
     }
 })();
-// ============================================
-//   CUSTOM CURSOR (additive, safe fallback)
-// ============================================
 (function () {
     'use strict';
 
@@ -512,8 +456,6 @@ if (typeof module !== 'undefined' && module.exports) {
             dot.style.left = mouseX + 'px';
             dot.style.top = mouseY + 'px';
 
-            // Only hide the native cursor once we have a real pointer
-            // position to replace it with.
             if (!hasMoved) {
                 hasMoved = true;
                 document.body.classList.add('custom-cursor-ready');
@@ -554,9 +496,6 @@ if (typeof module !== 'undefined' && module.exports) {
             ring.style.opacity = '1';
         });
     } catch (err) {
-        // If anything above fails, the native cursor was never hidden
-        // (CSS only hides it via .custom-cursor-ready), so the page
-        // remains fully usable.
         console.error('[Custom Cursor] Failed to initialize:', err);
     }
 })();

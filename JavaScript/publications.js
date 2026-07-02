@@ -1,13 +1,9 @@
 'use strict';
 
 document.addEventListener("DOMContentLoaded", () => {
-  // -------------------------------------------------
-  // 1. Dark Mode Toggle
-  // -------------------------------------------------
   const themeSwitch = document.getElementById("theme-switch");
   const body = document.body;
 
-  // Check user's previous theme preference
   const currentTheme = localStorage.getItem("theme");
   if (currentTheme) {
     body.classList.add(currentTheme);
@@ -25,11 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.removeItem("theme");
     }
   });
-
-  // -------------------------------------------------
-  // 2. Scroll Reveal Animations
-  // -------------------------------------------------
-  // Added '.publication-item' so your new manually added projects also animate in
   const revealElements = document.querySelectorAll(
     ".hero-section, .about-section, .project-highlights, .publication-item"
   );
@@ -38,23 +29,19 @@ document.addEventListener("DOMContentLoaded", () => {
     revealElements.forEach((element) => {
       const windowHeight = window.innerHeight;
       const revealTop = element.getBoundingClientRect().top;
-      const revealPoint = 100; // Triggers slightly earlier for a smoother feel
+      const revealPoint = 100;
 
       if (revealTop < windowHeight - revealPoint) {
         element.classList.add("active");
       } else {
-        // Optional: Remove the else block if you only want them to animate in once
         element.classList.remove("active");
       }
     });
   };
 
   window.addEventListener("scroll", revealOnScroll);
-  revealOnScroll(); // Initial check on page load
+  revealOnScroll();
 });
-/* ========================================
-   HEADER COMPONENT JAVASCRIPT
-   ======================================== */
 
 'use strict';
 
@@ -85,9 +72,6 @@ const HeaderUtils = {
     }
 };
 
-// ============================================
-//           SMART HEADER SYSTEM
-// ============================================
 
 class SmartHeader {
     constructor() {
@@ -170,20 +154,15 @@ class SmartHeader {
             if (!this.isMobile && this.isHidden) {
                 this.showHeader();
             }
-            // Closing the mobile menu automatically when resizing back to desktop
             if (wasMobile && !this.isMobile && this.isMenuOpen) {
                 this.closeMobileMenu();
             }
         }, 250));
     }
 
-    // --------------------------------------------
-    // Mobile hamburger menu
-    // --------------------------------------------
     setupMobileMenu() {
         if (!this.navToggle || !this.navigation) return;
 
-        // Create a single backdrop element, reused across the session
         this.navBackdrop = document.createElement('div');
         this.navBackdrop.className = 'nav-backdrop';
         document.body.appendChild(this.navBackdrop);
@@ -194,12 +173,10 @@ class SmartHeader {
 
         this.navBackdrop.addEventListener('click', () => this.closeMobileMenu());
 
-        // Close on Escape
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && this.isMenuOpen) this.closeMobileMenu();
         });
 
-        // Close whenever a nav link is tapped
         this.navigation.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => this.closeMobileMenu());
         });
@@ -287,10 +264,6 @@ class SmartHeader {
     }
 }
 
-// ============================================
-//              HEADER LOADER
-// ============================================
-
 class HeaderLoader {
     constructor() {
         this.componentPath = './components/header.html';
@@ -298,12 +271,6 @@ class HeaderLoader {
         this.pathConfig = {};
     }
 
-    /**
-     * Determines whether the current page lives inside the /HTML/ subfolder.
-     * Uses a case-insensitive check since GitHub Pages is served from a
-     * case-sensitive filesystem and a mismatched check here is the #1 cause
-     * of the header silently failing to load on GitHub but working locally.
-     */
     configurePaths() {
         const currentPath = window.location.pathname.toLowerCase();
         const isInSubfolder = currentPath.includes('/html/');
@@ -348,8 +315,6 @@ class HeaderLoader {
 
             let headerHTML = await response.text();
 
-            // Replace every {{PLACEHOLDER}} found in pathConfig — order-independent,
-            // so adding/removing keys never silently breaks a stale .replace() chain.
             Object.entries(this.pathConfig).forEach(([key, value]) => {
                 headerHTML = headerHTML.split(`{{${key}}}`).join(value);
             });
@@ -366,9 +331,6 @@ class HeaderLoader {
 
             return true;
         } catch (error) {
-            // Visible failure instead of a silently blank header — makes
-            // GitHub Pages path issues obvious in DevTools instead of just
-            // "the header isn't there and I don't know why."
             console.error('[MIDC Header] Failed to load header component:', error);
             return false;
         }
@@ -392,9 +354,6 @@ class HeaderLoader {
     }
 }
 
-// ============================================
-//              INITIALIZATION
-// ============================================
 
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
@@ -409,9 +368,6 @@ if (document.readyState === 'loading') {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { SmartHeader, HeaderLoader };
 }
-// ============================================
-//   MOBILE HAMBURGER MENU (additive, standalone)
-// ============================================
 (function () {
     'use strict';
 
@@ -464,9 +420,6 @@ if (typeof module !== 'undefined' && module.exports) {
         return true;
     }
 
-    // The header HTML loads asynchronously (via fetch in HeaderLoader),
-    // so .nav-toggle won't exist yet on DOMContentLoaded. Watch for it
-    // instead of guessing a timeout.
     if (!initMobileMenu()) {
         const observer = new MutationObserver(() => {
             if (initMobileMenu()) {
@@ -476,9 +429,6 @@ if (typeof module !== 'undefined' && module.exports) {
         observer.observe(document.body, { childList: true, subtree: true });
     }
 })();
-// ============================================
-//   CUSTOM CURSOR (additive, safe fallback)
-// ============================================
 (function () {
     'use strict';
 
@@ -509,8 +459,6 @@ if (typeof module !== 'undefined' && module.exports) {
             dot.style.left = mouseX + 'px';
             dot.style.top = mouseY + 'px';
 
-            // Only hide the native cursor once we have a real pointer
-            // position to replace it with.
             if (!hasMoved) {
                 hasMoved = true;
                 document.body.classList.add('custom-cursor-ready');
@@ -551,9 +499,6 @@ if (typeof module !== 'undefined' && module.exports) {
             ring.style.opacity = '1';
         });
     } catch (err) {
-        // If anything above fails, the native cursor was never hidden
-        // (CSS only hides it via .custom-cursor-ready), so the page
-        // remains fully usable.
         console.error('[Custom Cursor] Failed to initialize:', err);
     }
 })();

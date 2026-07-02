@@ -4081,3 +4081,7 @@ textarea:focus::placeholder {
     padding-top: 2rem;
   }
 }
+#faq{
+  padding:0px;
+  padding-bottom: 15px;
+}

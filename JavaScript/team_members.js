@@ -1,9 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Team member image hover effects only (removed icon generation)
   const memberImgs = document.querySelectorAll(".member-img");
 
   memberImgs.forEach((img) => {
-    // Add hover effect
     img.addEventListener("mouseenter", function () {
       this.style.transform = "scale(1.08) rotate(5deg)";
     });
@@ -13,15 +11,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Add expanding effect to team member cards on click
   const teamMembers = document.querySelectorAll(".team-member");
 
   teamMembers.forEach((member) => {
     member.addEventListener("click", function () {
-      // Toggle expanded class
       this.classList.toggle("expanded");
 
-      // Reset any other expanded cards
       teamMembers.forEach((otherMember) => {
         if (otherMember !== this) {
           otherMember.classList.remove("expanded");
@@ -30,7 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Scroll reveal for team sections
   const revealOnScroll = () => {
     const sections = document.querySelectorAll(
       ".section-subtitle, .team-container"
@@ -51,11 +45,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Dark Mode Toggle
   const themeSwitch = document.getElementById("theme-switch");
   const body = document.body;
 
-  // Check user's previous theme preference
   const currentTheme = localStorage.getItem("theme");
   if (currentTheme) {
     body.classList.add(currentTheme);
@@ -72,21 +64,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // // Smooth Scrolling
-  // const navLinks = document.querySelectorAll(".nav-link");
-  // navLinks.forEach((link) => {
-  //   link.addEventListener("click", (e) => {
-  //     e.preventDefault();
-  //     const targetId = link.getAttribute("href");
-  //     const targetSection = document.querySelector(targetId);
-
-  //     targetSection.scrollIntoView({
-  //       behavior: "smooth",
-  //     });
-  //   });
-  // });
-
-  // Scroll Reveal Animations
   const revealElements = document.querySelectorAll(
     ".hero-section, .about-section, .project-highlights"
   );
@@ -106,17 +83,14 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   window.addEventListener("scroll", revealOnScroll);
-  revealOnScroll(); // Initial check
+  revealOnScroll();
 });
 
-// Add this to your JavaScript
 document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll(".member-img img").forEach((img) => {
     img.onerror = function () {
-      // Replace with default image or placeholder
       this.src = "../images/default_profile.jpg";
 
-      // Or create a placeholder with initials
       const memberName =
         this.closest(".team-member").querySelector(".member-name").textContent;
       const initials = memberName
@@ -132,16 +106,6 @@ document.addEventListener("DOMContentLoaded", function () {
     };
   });
 });
-// const ahElement = document.getElementById('AH');
-
-// if (ahElement) {
-    
-//     ahElement.style.cursor = 'pointer';
-
-//     ahElement.addEventListener('click', () => {
-//         window.location.href = 'https://www.nita.ac.in/Department/Department_FacultyProfile.aspx?nID=casac&nDeptID=caasa';
-//     });
-// }
 const akElement = document.getElementById('AK');
 
 if (akElement) {
@@ -152,10 +116,6 @@ if (akElement) {
         window.location.href = 'https://www.linkedin.com/in/anurag-kar-769358326/';
     });
 }
-/* ========================================
-   HEADER COMPONENT JAVASCRIPT
-   ======================================== */
-
 'use strict';
 
 const HeaderUtils = {
@@ -185,9 +145,6 @@ const HeaderUtils = {
     }
 };
 
-// ============================================
-//           SMART HEADER SYSTEM
-// ============================================
 
 class SmartHeader {
     constructor() {
@@ -270,20 +227,15 @@ class SmartHeader {
             if (!this.isMobile && this.isHidden) {
                 this.showHeader();
             }
-            // Closing the mobile menu automatically when resizing back to desktop
             if (wasMobile && !this.isMobile && this.isMenuOpen) {
                 this.closeMobileMenu();
             }
         }, 250));
     }
 
-    // --------------------------------------------
-    // Mobile hamburger menu
-    // --------------------------------------------
     setupMobileMenu() {
         if (!this.navToggle || !this.navigation) return;
 
-        // Create a single backdrop element, reused across the session
         this.navBackdrop = document.createElement('div');
         this.navBackdrop.className = 'nav-backdrop';
         document.body.appendChild(this.navBackdrop);
@@ -294,12 +246,10 @@ class SmartHeader {
 
         this.navBackdrop.addEventListener('click', () => this.closeMobileMenu());
 
-        // Close on Escape
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && this.isMenuOpen) this.closeMobileMenu();
         });
 
-        // Close whenever a nav link is tapped
         this.navigation.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => this.closeMobileMenu());
         });
@@ -387,9 +337,6 @@ class SmartHeader {
     }
 }
 
-// ============================================
-//              HEADER LOADER
-// ============================================
 
 class HeaderLoader {
     constructor() {
@@ -398,12 +345,6 @@ class HeaderLoader {
         this.pathConfig = {};
     }
 
-    /**
-     * Determines whether the current page lives inside the /HTML/ subfolder.
-     * Uses a case-insensitive check since GitHub Pages is served from a
-     * case-sensitive filesystem and a mismatched check here is the #1 cause
-     * of the header silently failing to load on GitHub but working locally.
-     */
     configurePaths() {
         const currentPath = window.location.pathname.toLowerCase();
         const isInSubfolder = currentPath.includes('/html/');
@@ -448,8 +389,6 @@ class HeaderLoader {
 
             let headerHTML = await response.text();
 
-            // Replace every {{PLACEHOLDER}} found in pathConfig — order-independent,
-            // so adding/removing keys never silently breaks a stale .replace() chain.
             Object.entries(this.pathConfig).forEach(([key, value]) => {
                 headerHTML = headerHTML.split(`{{${key}}}`).join(value);
             });
@@ -466,9 +405,6 @@ class HeaderLoader {
 
             return true;
         } catch (error) {
-            // Visible failure instead of a silently blank header — makes
-            // GitHub Pages path issues obvious in DevTools instead of just
-            // "the header isn't there and I don't know why."
             console.error('[MIDC Header] Failed to load header component:', error);
             return false;
         }
@@ -492,9 +428,6 @@ class HeaderLoader {
     }
 }
 
-// ============================================
-//              INITIALIZATION
-// ============================================
 
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
@@ -509,9 +442,6 @@ if (document.readyState === 'loading') {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { SmartHeader, HeaderLoader };
 }
-// ============================================
-//   MOBILE HAMBURGER MENU (additive, standalone)
-// ============================================
 (function () {
     'use strict';
 
@@ -564,9 +494,6 @@ if (typeof module !== 'undefined' && module.exports) {
         return true;
     }
 
-    // The header HTML loads asynchronously (via fetch in HeaderLoader),
-    // so .nav-toggle won't exist yet on DOMContentLoaded. Watch for it
-    // instead of guessing a timeout.
     if (!initMobileMenu()) {
         const observer = new MutationObserver(() => {
             if (initMobileMenu()) {
@@ -576,9 +503,6 @@ if (typeof module !== 'undefined' && module.exports) {
         observer.observe(document.body, { childList: true, subtree: true });
     }
 })();
-// ============================================
-//   CUSTOM CURSOR (additive, safe fallback)
-// ============================================
 (function () {
     'use strict';
 
@@ -609,8 +533,6 @@ if (typeof module !== 'undefined' && module.exports) {
             dot.style.left = mouseX + 'px';
             dot.style.top = mouseY + 'px';
 
-            // Only hide the native cursor once we have a real pointer
-            // position to replace it with.
             if (!hasMoved) {
                 hasMoved = true;
                 document.body.classList.add('custom-cursor-ready');
@@ -651,9 +573,6 @@ if (typeof module !== 'undefined' && module.exports) {
             ring.style.opacity = '1';
         });
     } catch (err) {
-        // If anything above fails, the native cursor was never hidden
-        // (CSS only hides it via .custom-cursor-ready), so the page
-        // remains fully usable.
         console.error('[Custom Cursor] Failed to initialize:', err);
     }
 })();

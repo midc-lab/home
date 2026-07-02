@@ -1,13 +1,8 @@
 :root {
-  /* ============================================ */
-  /*           MODERN DESIGN SYSTEM 2024         */
-  /* ============================================ */
   
-  /* Base Colors */
   --color-white: #ffffff;
   --color-black: #000000;
 
-  /* Light Mode Palette */
   --light-bg-primary: #f8f9fa;
   --light-bg-secondary: #ffffff;
   --light-bg-tertiary: #e9ecef;
@@ -19,13 +14,11 @@
   --light-accent-secondary: #6c757d;
 
 
-  /* Semantic Colors */
   --success: #28a745;
   --warning: #ffc107;
   --error: #dc3545;
   --info: #17a2b8;
 
-  /* Theme Variables */
   --bg-primary: var(--light-bg-primary);
   --bg-secondary: var(--light-bg-secondary);
   --bg-tertiary: var(--light-bg-tertiary);
@@ -36,28 +29,25 @@
   --accent-primary: var(--light-accent-primary);
   --accent-secondary: var(--light-accent-secondary);
   
-  /* Typography System */
   --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-family-display: 'Space Grotesk', 'Inter', sans-serif;
   --font-family-mono: 'JetBrains Mono', 'Fira Code', monospace;
   
-  /* Font Sizes - Modern Scale */
-  --text-2xs: 0.6875rem;    /* 11px */
-  --text-xs: 0.75rem;       /* 12px */
-  --text-sm: 0.875rem;      /* 14px */
-  --text-base: 1rem;        /* 16px */
-  --text-lg: 1.125rem;      /* 18px */
-  --text-xl: 1.25rem;       /* 20px */
-  --text-2xl: 1.5rem;       /* 24px */
-  --text-3xl: 1.875rem;     /* 30px */
-  --text-4xl: 2.25rem;      /* 36px */
-  --text-5xl: 3rem;         /* 48px */
-  --text-6xl: 3.75rem;      /* 60px */
-  --text-7xl: 4.5rem;       /* 72px */
-  --text-8xl: 6rem;         /* 96px */
-  --text-9xl: 8rem;         /* 128px */
+  --text-2xs: 0.6875rem;    
+  --text-xs: 0.75rem;       
+  --text-sm: 0.875rem;      
+  --text-base: 1rem;        
+  --text-lg: 1.125rem;      
+  --text-xl: 1.25rem;       
+  --text-2xl: 1.5rem;       
+  --text-3xl: 1.875rem;     
+  --text-4xl: 2.25rem;      
+  --text-5xl: 3rem;         
+  --text-6xl: 3.75rem;      
+  --text-7xl: 4.5rem;       
+  --text-8xl: 6rem;         
+  --text-9xl: 8rem;         
   
-  /* Font Weights */
   --font-thin: 100;
   --font-light: 300;
   --font-normal: 400;
@@ -67,7 +57,6 @@
   --font-extrabold: 800;
   --font-black: 900;
   
-  /* Line Heights */
   --leading-none: 1;
   --leading-tight: 1.25;
   --leading-snug: 1.375;
@@ -75,44 +64,41 @@
   --leading-relaxed: 1.625;
   --leading-loose: 2;
   
-  /* Spacing System - Perfect Scale */
   --spacing-px: 1px;
   --spacing-0: 0;
-  --spacing-0-5: 0.125rem;  /* 2px */
-  --spacing-1: 0.25rem;     /* 4px */
-  --spacing-1-5: 0.375rem;  /* 6px */
-  --spacing-2: 0.5rem;      /* 8px */
-  --spacing-2-5: 0.625rem;  /* 10px */
-  --spacing-3: 0.75rem;     /* 12px */
-  --spacing-3-5: 0.875rem;  /* 14px */
-  --spacing-4: 1rem;        /* 16px */
-  --spacing-5: 1.25rem;     /* 20px */
-  --spacing-6: 1.5rem;      /* 24px */
-  --spacing-7: 1.75rem;     /* 28px */
-  --spacing-8: 2rem;        /* 32px */
-  --spacing-9: 2.25rem;     /* 36px */
-  --spacing-10: 2.5rem;     /* 40px */
-  --spacing-11: 2.75rem;    /* 44px */
-  --spacing-12: 3rem;       /* 48px */
-  --spacing-14: 3.5rem;     /* 56px */
-  --spacing-16: 4rem;       /* 64px */
-  --spacing-20: 5rem;       /* 80px */
-  --spacing-24: 6rem;       /* 96px */
-  --spacing-28: 7rem;       /* 112px */
-  --spacing-32: 8rem;       /* 128px */
-  --spacing-36: 9rem;       /* 144px */
-  --spacing-40: 10rem;      /* 160px */
-  --spacing-44: 11rem;      /* 176px */
-  --spacing-48: 12rem;      /* 192px */
-  --spacing-52: 13rem;      /* 208px */
-  --spacing-56: 14rem;      /* 224px */
-  --spacing-60: 15rem;      /* 240px */
-  --spacing-64: 16rem;      /* 256px */
-  --spacing-72: 18rem;      /* 288px */
-  --spacing-80: 20rem;      /* 320px */
-  --spacing-96: 24rem;      /* 384px */
-  
-  /* Modern Shadow System */
+  --spacing-0-5: 0.125rem;  
+  --spacing-1: 0.25rem;     
+  --spacing-1-5: 0.375rem;  
+  --spacing-2: 0.5rem;      
+  --spacing-2-5: 0.625rem;  
+  --spacing-3: 0.75rem;     
+  --spacing-3-5: 0.875rem;  
+  --spacing-4: 1rem;        
+  --spacing-5: 1.25rem;     
+  --spacing-6: 1.5rem;      
+  --spacing-7: 1.75rem;     
+  --spacing-8: 2rem;        
+  --spacing-9: 2.25rem;     
+  --spacing-10: 2.5rem;     
+  --spacing-11: 2.75rem;    
+  --spacing-12: 3rem;       
+  --spacing-14: 3.5rem;     
+  --spacing-16: 4rem;       
+  --spacing-20: 5rem;       
+  --spacing-24: 6rem;       
+  --spacing-28: 7rem;       
+  --spacing-32: 8rem;       
+  --spacing-36: 9rem;       
+  --spacing-40: 10rem;      
+  --spacing-44: 11rem;      
+  --spacing-48: 12rem;      
+  --spacing-52: 13rem;      
+  --spacing-56: 14rem;      
+  --spacing-60: 15rem;      
+  --spacing-64: 16rem;     
+  --spacing-72: 18rem;     
+  --spacing-80: 20rem; 
+  --spacing-96: 24rem;
   --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
@@ -122,7 +108,6 @@
   --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
   --shadow-none: 0 0 #0000;
   
-  /* Premium Glass Shadows */
   --glass-shadow-sm: 0 2px 16px rgba(0, 0, 0, 0.04), 0 1px 4px rgba(0, 0, 0, 0.08);
   --glass-shadow-md: 0 8px 32px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.12);
   --glass-shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12), 0 4px 16px rgba(0, 0, 0, 0.16);

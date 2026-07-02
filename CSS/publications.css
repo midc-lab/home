@@ -852,3 +852,11 @@ body.dark-mode {
 }
 
 .pub-details { flex: none; }
+#a.section-header h2 {
+  display: inline-block;
+  background: linear-gradient(90deg, #f2a900, #0e7c7b);
+  background-size: 100% 3px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  padding-bottom: 5px;
+}
